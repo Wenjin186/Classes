@@ -24,7 +24,7 @@ bool StartGameScene::init()
     background = Sprite::create("start_game/background.png");
     background->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     
-    this->addChild(background);
+    this->addChild(background); //卧槽
     
     return true;
 }
