@@ -22,6 +22,8 @@ bool NewGameScene::init()
     if ( !Scene::init() )
         return false;
     
+    CCLOG("hello world!");
+    
     return true;
 }
 
