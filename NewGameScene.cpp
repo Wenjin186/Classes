@@ -8,6 +8,7 @@
 
 #include "NewGameScene.h"
 #include "NewGameSceneReader.h"
+#include "StartGameScene.h"
 
 
 Scene *NewGameScene::createScene(){
@@ -21,14 +22,26 @@ bool NewGameScene::init()
 {
     if ( !Scene::init() )
         return false;
-    
-    CCLOG("hello world!");
-    
+
     return true;
 }
 
 Widget::ccWidgetClickCallback NewGameScene::onLocateClickCallback(const std::string &callBackName){
-
+    
+    if (callBackName=="StartButton") {
+        return CC_CALLBACK_1(NewGameScene::StartButton, this);
+    }else if (callBackName=="BackButton"){
+        return CC_CALLBACK_1(NewGameScene::BackButton, this);
+    }
     
     return nullptr;
+}
+
+void NewGameScene::StartButton(Ref *sender){
+    CCLOG("Start Button");
+}
+
+void NewGameScene::BackButton(cocos2d::Ref *sender){
+    auto director = Director::getInstance();
+    director->replaceScene(StartGameScene::createScene());
 }

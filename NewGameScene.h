@@ -27,6 +27,10 @@ public:
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
     
+    void StartButton(Ref *sender);
+    
+    void BackButton(Ref *sender);
+    
 };
 
 #endif /* NewGameScene_hpp */
