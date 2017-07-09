@@ -9,6 +9,7 @@
 #include "NewGameScene.h"
 #include "NewGameSceneReader.h"
 #include "StartGameScene.h"
+#include "GameUiScene.hpp"
 
 
 Scene *NewGameScene::createScene(){
@@ -38,7 +39,8 @@ Widget::ccWidgetClickCallback NewGameScene::onLocateClickCallback(const std::str
 }
 
 void NewGameScene::StartButton(Ref *sender){
-    CCLOG("Start Button");
+    auto director = Director::getInstance();
+    director->replaceScene(GameUiScene::createScene());
 }
 
 void NewGameScene::BackButton(cocos2d::Ref *sender){
