@@ -21,6 +21,11 @@ public:
     
     void newGame(Ref *sender);
     
+    void option (Ref *sender);
+    
+    void exitGame(Ref *sender);
+    
+    void loadGame(Ref *sender);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
