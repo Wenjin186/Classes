@@ -11,6 +11,7 @@
 #include "GameUiScene.hpp"
 #include "ExitScene.hpp"
 #include "LoadGameScene.hpp"
+#include "HistoryUtil.hpp"
 
 Scene* SettingScene::createScene()
 {
@@ -57,6 +58,9 @@ void SettingScene::Option(cocos2d::Ref *sender){
 void SettingScene::Load(cocos2d::Ref *sender){
     auto director = Director::getInstance();
     director->replaceScene(LoadGameScene::createScene());
+    auto his = HistoryUtil::getInstance();
+    string his_str = "SettingScene";
+    his->setSceneHistory(his_str);
 }
 
 void SettingScene::Exit(cocos2d::Ref *sender){

@@ -6,6 +6,7 @@
 #include "NewGameScene.h"
 #include "OptionScene.hpp"
 #include "LoadGameScene.hpp"
+#include "HistoryUtil.hpp"
 
 
 Scene* StartGameScene::createScene()
@@ -42,6 +43,7 @@ Widget::ccWidgetClickCallback StartGameScene::onLocateClickCallback(const std::s
 void StartGameScene::newGame(cocos2d::Ref *sender){
     auto director = Director::getInstance();
     director->replaceScene(NewGameScene::createScene());
+    
 }
 
 void StartGameScene::option(cocos2d::Ref *sender){
@@ -56,4 +58,7 @@ void StartGameScene::exitGame(cocos2d::Ref *sender){
 void StartGameScene::loadGame(cocos2d::Ref *sender){
     auto director = Director::getInstance();
     director->replaceScene(LoadGameScene::createScene());
+    auto his = HistoryUtil::getInstance();
+    string his_str = "StartGameScene";
+    his->setSceneHistory(his_str);
 }

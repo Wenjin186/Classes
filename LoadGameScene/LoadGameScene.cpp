@@ -10,6 +10,8 @@
 #include "LoadGameSceneReader.hpp"
 #include "StartGameScene.h"
 #include "NewGameScene.h"
+#include "HistoryUtil.hpp"
+#include "SettingScene.hpp"
 
 Scene *LoadGameScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -43,8 +45,13 @@ Widget::ccWidgetClickCallback LoadGameScene::onLocateClickCallback(const std::st
 }
 
 void LoadGameScene::Back(cocos2d::Ref *sender){
-    auto director = Director::getInstance();
-    director->replaceScene(StartGameScene::createScene());
+    if (HistoryUtil::getInstance()->getSceneHistory() == "StartGameScene") {
+        auto director = Director::getInstance();
+        director->replaceScene(StartGameScene::createScene());
+    }else if (HistoryUtil::getInstance()->getSceneHistory() == "SettingScene"){
+        auto director = Director::getInstance();
+        director->replaceScene(SettingScene::createScene());
+    }
 }
 
 void LoadGameScene::NewGame(cocos2d::Ref *sender){
