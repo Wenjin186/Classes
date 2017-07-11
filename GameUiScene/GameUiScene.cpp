@@ -8,6 +8,7 @@
 
 #include "GameUiScene.hpp"
 #include "GameUiSceneReader.hpp"
+#include "SettingScene.hpp"
 
 Scene *GameUiScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -41,7 +42,8 @@ void GameUiScene::Diary(cocos2d::Ref *sender){
 }
 
 void GameUiScene::Settings(cocos2d::Ref *sender){
-    CCLOG("Settings!");
+    auto director = Director::getInstance();
+    director->replaceScene(SettingScene::createScene());
 }
 
 void GameUiScene::Trade(cocos2d::Ref *sender){

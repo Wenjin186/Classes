@@ -5,6 +5,7 @@
 #include "StartGameSceneReader.h"
 #include "NewGameScene.h"
 #include "OptionScene.hpp"
+#include "LoadGameScene.hpp"
 
 
 Scene* StartGameScene::createScene()
@@ -53,5 +54,6 @@ void StartGameScene::exitGame(cocos2d::Ref *sender){
 }
 
 void StartGameScene::loadGame(cocos2d::Ref *sender){
-    CCLOG("loadGame");
+    auto director = Director::getInstance();
+    director->replaceScene(LoadGameScene::createScene());
 }
