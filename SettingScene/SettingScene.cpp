@@ -12,6 +12,7 @@
 #include "ExitScene.hpp"
 #include "LoadGameScene.hpp"
 #include "HistoryUtil.hpp"
+#include "OptionScene.hpp"
 
 Scene* SettingScene::createScene()
 {
@@ -47,20 +48,26 @@ Widget::ccWidgetClickCallback SettingScene::onLocateClickCallback(const std::str
     return nullptr;
 }
 
+void SettingScene::setSceneHistory(){
+    auto his = HistoryUtil::getInstance();
+    string his_str = "SettingScene";
+    his->pushSceneHistory(his_str);
+}
+
 void SettingScene::Save(cocos2d::Ref *sender){
     CCLOG("Save");
 }
 
 void SettingScene::Option(cocos2d::Ref *sender){
-    CCLOG("Option");
+    auto director = Director::getInstance();
+    setSceneHistory();
+    director->replaceScene(OptionScene::createScene());
 }
 
 void SettingScene::Load(cocos2d::Ref *sender){
     auto director = Director::getInstance();
+    setSceneHistory();
     director->replaceScene(LoadGameScene::createScene());
-    auto his = HistoryUtil::getInstance();
-    string his_str = "SettingScene";
-    his->setSceneHistory(his_str);
 }
 
 void SettingScene::Exit(cocos2d::Ref *sender){

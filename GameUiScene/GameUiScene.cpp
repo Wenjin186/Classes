@@ -9,6 +9,7 @@
 #include "GameUiScene.hpp"
 #include "GameUiSceneReader.hpp"
 #include "SettingScene.hpp"
+#include "DiaryScene.hpp"
 
 Scene *GameUiScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -38,7 +39,8 @@ Widget::ccWidgetClickCallback GameUiScene::onLocateClickCallback(const std::stri
 }
 
 void GameUiScene::Diary(cocos2d::Ref *sender){
-    CCLOG("Diary!");
+    auto director = Director::getInstance();
+    director->replaceScene(DiaryScene::createScene());
 }
 
 void GameUiScene::Settings(cocos2d::Ref *sender){

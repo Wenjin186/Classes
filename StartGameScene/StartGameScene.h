@@ -19,6 +19,8 @@ public:
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
     
+    void setSceneHistory();
+    
     void newGame(Ref *sender);
     
     void option (Ref *sender);
@@ -26,6 +28,9 @@ public:
     void exitGame(Ref *sender);
     
     void loadGame(Ref *sender);
+    
+private:
+    Scene *scene;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

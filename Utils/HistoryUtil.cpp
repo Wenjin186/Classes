@@ -24,12 +24,24 @@ void HistoryUtil::purge(){
     CC_SAFE_FREE(HistoryUtil::_history);
 }
 
-string HistoryUtil::getSceneHistory(){
+int HistoryUtil::checkSceneHistory(string str){
     string temp = _sceneHis.back();
-    _sceneHis.popBack();
-    return temp;
+    if (temp == str) {
+        _sceneHis.pop_back();
+        return 1;
+    }else
+        return 0;
 }
 
-void HistoryUtil::setSceneHistory(string &str){
-    this->_sceneHis.pushBack(str);
+int HistoryUtil::checkSceneHistoryWithoutPop(string str){
+    
+    string temp = _sceneHis.back();
+    if (temp==str) {
+        return 1;
+    }else
+        return 0;
+}
+
+void HistoryUtil::pushSceneHistory(string &str){
+    this->_sceneHis.push_back(str);
 }

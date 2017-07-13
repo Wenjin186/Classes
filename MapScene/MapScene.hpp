@@ -1,13 +1,13 @@
 //
-//  LoadGameScene.hpp
+//  MapScene.hpp
 //  cocos3.10-mxzy
 //
-//  Created by Wenjin Zhang on 2017/7/10.
+//  Created by Wenjin Zhang on 2017/7/12.
 //
 //
 
-#ifndef LoadGameScene_hpp
-#define LoadGameScene_hpp
+#ifndef MapScene_hpp
+#define MapScene_hpp
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
@@ -17,7 +17,7 @@
 USING_NS_CC;
 using namespace ui;
 
-class LoadGameScene : public Scene, public cocostudio::WidgetCallBackHandlerProtocol{
+class MapScene : public Scene, public cocostudio::WidgetCallBackHandlerProtocol{
 public:
     static cocos2d::Scene *createScene();
     
@@ -25,19 +25,18 @@ public:
     
     void onEnterTransitionDidFinish();
     
-    CREATE_FUNC(LoadGameScene);
+    CREATE_FUNC(MapScene);
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
     
+    void WorldMap(Ref *sender);
+    
+    void SeaVoyage(Ref *sender);
+    
+    void IslandMap(Ref *sender);
+    
     void Back(Ref *sender);
-    
-    void NewGame(Ref *sender);
-    
-    void Load1(Ref *sender);
-    
-    void Load2(Ref *sender);
-    
-    void Load3(Ref *sender);
 };
 
-#endif /* LoadGameScene_hpp */
+
+#endif /* MapScene_hpp */

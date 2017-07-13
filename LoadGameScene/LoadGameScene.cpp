@@ -27,6 +27,14 @@ bool LoadGameScene::init(){
     return true;
 }
 
+void LoadGameScene::onEnterTransitionDidFinish(){
+    Scene::onEnterTransitionDidFinish();
+    if (HistoryUtil::getInstance()->checkSceneHistoryWithoutPop("SettingScene")) {
+        Button *button = (Button *)this->getChildByName("NewGameButton");
+        button->setEnabled(false);
+    }
+}
+
 Widget::ccWidgetClickCallback LoadGameScene::onLocateClickCallback(const std::string &callBackName){
     
     if (callBackName=="Back") {
@@ -45,10 +53,10 @@ Widget::ccWidgetClickCallback LoadGameScene::onLocateClickCallback(const std::st
 }
 
 void LoadGameScene::Back(cocos2d::Ref *sender){
-    if (HistoryUtil::getInstance()->getSceneHistory() == "StartGameScene") {
+    if (HistoryUtil::getInstance()->checkSceneHistory("StartGameScene")) {
         auto director = Director::getInstance();
         director->replaceScene(StartGameScene::createScene());
-    }else if (HistoryUtil::getInstance()->getSceneHistory() == "SettingScene"){
+    }else if (HistoryUtil::getInstance()->checkSceneHistory("SettingScene")){
         auto director = Director::getInstance();
         director->replaceScene(SettingScene::createScene());
     }

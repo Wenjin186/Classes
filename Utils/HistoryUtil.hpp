@@ -13,18 +13,21 @@
 
 USING_NS_CC;
 
+static void setSceneHistory();
+
 using namespace std;
 class HistoryUtil{
 public:
     static HistoryUtil *getInstance();
     static void purge();
-    string getSceneHistory();
-    void setSceneHistory(string &str);
+    int checkSceneHistory(string str);
+    int checkSceneHistoryWithoutPop(string str);
+    void pushSceneHistory(string &str);
 private:
     static HistoryUtil *_history;
     //string _sceneHis;
     //stack<string> _sceneHis;
-    Vector<string> _sceneHis;
+    vector<string> _sceneHis;
 };
 
 #endif /* HistoryUtil_hpp */

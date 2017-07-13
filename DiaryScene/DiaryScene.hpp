@@ -1,13 +1,13 @@
 //
-//  LoadGameScene.hpp
+//  DiaryScene.hpp
 //  cocos3.10-mxzy
 //
-//  Created by Wenjin Zhang on 2017/7/10.
+//  Created by Wenjin Zhang on 2017/7/11.
 //
 //
 
-#ifndef LoadGameScene_hpp
-#define LoadGameScene_hpp
+#ifndef DiaryScene_hpp
+#define DiaryScene_hpp
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
@@ -17,7 +17,7 @@
 USING_NS_CC;
 using namespace ui;
 
-class LoadGameScene : public Scene, public cocostudio::WidgetCallBackHandlerProtocol{
+class DiaryScene : public Scene, public cocostudio::WidgetCallBackHandlerProtocol{
 public:
     static cocos2d::Scene *createScene();
     
@@ -25,19 +25,19 @@ public:
     
     void onEnterTransitionDidFinish();
     
-    CREATE_FUNC(LoadGameScene);
+    CREATE_FUNC(DiaryScene);
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
     
+    void Log(Ref *sender);
+    
+    void Map(Ref *sender);
+    
+    void Inventory(Ref *sender);
+    
+    void Relationship(Ref *sender);
+    
     void Back(Ref *sender);
-    
-    void NewGame(Ref *sender);
-    
-    void Load1(Ref *sender);
-    
-    void Load2(Ref *sender);
-    
-    void Load3(Ref *sender);
 };
 
-#endif /* LoadGameScene_hpp */
+#endif /* DiaryScene_hpp */

@@ -9,6 +9,8 @@
 #include "OptionScene.hpp"
 #include "OptionSceneReader.hpp"
 #include "StartGameScene.h"
+#include "HistoryUtil.hpp"
+#include "SettingScene.hpp"
 
 Scene *OptionScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -42,8 +44,15 @@ Widget::ccWidgetClickCallback OptionScene::onLocateClickCallback(const std::stri
 }
 
 void OptionScene::Back(cocos2d::Ref *sender){
-    auto director = Director::getInstance();
-    director->replaceScene(StartGameScene::createScene());
+    if (HistoryUtil::getInstance()->checkSceneHistory("StartGameScene")) {
+        auto director = Director::getInstance();
+        director->replaceScene(StartGameScene::createScene());
+    }else if (HistoryUtil::getInstance()->checkSceneHistory("SettingScene")){
+        auto director = Director::getInstance();
+        director->replaceScene(SettingScene::createScene());
+    }
+    
+    
 }
 
 void OptionScene::Ui(cocos2d::Ref *sender){

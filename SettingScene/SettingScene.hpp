@@ -27,6 +27,8 @@ public:
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
     
+    void setSceneHistory();
+    
     void Save(Ref *sender);
     
     void Load(Ref *sender);

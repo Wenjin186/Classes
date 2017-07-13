@@ -40,25 +40,31 @@ Widget::ccWidgetClickCallback StartGameScene::onLocateClickCallback(const std::s
     return nullptr;
 }
 
+void StartGameScene::setSceneHistory(){
+    auto his = HistoryUtil::getInstance();
+    string his_str = "StartGameScene";
+    his->pushSceneHistory(his_str);
+}
+
 void StartGameScene::newGame(cocos2d::Ref *sender){
     auto director = Director::getInstance();
     director->replaceScene(NewGameScene::createScene());
-    
+    //setSceneHistory();
 }
 
 void StartGameScene::option(cocos2d::Ref *sender){
     auto director = Director::getInstance();
+    setSceneHistory();
     director->replaceScene(OptionScene::createScene());
 }
 
 void StartGameScene::exitGame(cocos2d::Ref *sender){
     Director::getInstance()->end();
+    HistoryUtil::purge();
 }
 
 void StartGameScene::loadGame(cocos2d::Ref *sender){
     auto director = Director::getInstance();
+    setSceneHistory();
     director->replaceScene(LoadGameScene::createScene());
-    auto his = HistoryUtil::getInstance();
-    string his_str = "StartGameScene";
-    his->setSceneHistory(his_str);
 }
