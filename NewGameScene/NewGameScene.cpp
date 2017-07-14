@@ -9,7 +9,7 @@
 #include "NewGameScene.h"
 #include "NewGameSceneReader.h"
 #include "StartGameScene.h"
-#include "GameUiScene.hpp"
+#include "WholeFarmScene.hpp"
 
 
 Scene *NewGameScene::createScene(){
@@ -40,7 +40,7 @@ Widget::ccWidgetClickCallback NewGameScene::onLocateClickCallback(const std::str
 
 void NewGameScene::StartButton(Ref *sender){
     auto director = Director::getInstance();
-    director->replaceScene(GameUiScene::createScene());
+    director->replaceScene(WholeFarmScene::createScene());
 }
 
 void NewGameScene::BackButton(cocos2d::Ref *sender){

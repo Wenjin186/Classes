@@ -12,17 +12,20 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "cocostudio/WidgetCallBackHandlerProtocol.h"
+#include "Protagonist.hpp"
 
 USING_NS_CC;
 using namespace ui;
 
-class GameUiScene : public Scene, public cocostudio::WidgetCallBackHandlerProtocol{
+class WholeFarmScene : public Scene, public cocostudio::WidgetCallBackHandlerProtocol{
 public:
     static cocos2d::Scene *createScene();
     
     virtual bool init();
     
-    CREATE_FUNC(GameUiScene);
+    void onEnterTransitionDidFinish();
+    
+    CREATE_FUNC(WholeFarmScene);
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
     
@@ -31,6 +34,9 @@ public:
     void Settings(Ref *sender);
     
     void Trade(Ref *sender);
+
+private:
+    Protagonist *pro = nullptr;
 };
 
 #endif /* GameUiScene_hpp */

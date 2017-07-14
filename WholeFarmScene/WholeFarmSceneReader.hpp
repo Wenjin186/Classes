@@ -15,9 +15,9 @@
 
 USING_NS_CC;
 
-class GameUiSceneReader : public cocostudio::NodeReader{
+class WholeFarmSceneReader : public cocostudio::NodeReader{
 public:
-    static GameUiSceneReader *getInstance();
+    static WholeFarmSceneReader *getInstance();
     static void purge();
     Node *createNodeWithFlatBuffers(const flatbuffers::Table *nodeOptions);
 };

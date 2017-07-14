@@ -9,7 +9,7 @@
 #include "ExitScene.hpp"
 #include "ExitSceneReader.hpp"
 #include "StartGameScene.h"
-#include "GameUiScene.hpp"
+#include "WholeFarmScene.hpp"
 
 Scene* ExitScene::createScene()
 {
@@ -41,7 +41,7 @@ Widget::ccWidgetClickCallback ExitScene::onLocateClickCallback(const std::string
 
 void ExitScene::Back(cocos2d::Ref *sender){
     auto director = Director::getInstance();
-    director->replaceScene(GameUiScene::createScene());
+    director->replaceScene(WholeFarmScene::createScene());
 }
 
 void ExitScene::Title(cocos2d::Ref *sender){

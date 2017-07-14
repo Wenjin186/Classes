@@ -8,7 +8,7 @@
 
 #include "DiaryScene.hpp"
 #include "DiarySceneReader.hpp"
-#include "GameUiScene.hpp"
+#include "WholeFarmScene.hpp"
 #include "LogScene.hpp"
 #include "InventoryScene.hpp"
 #include "MapScene.hpp"
@@ -71,5 +71,5 @@ void DiaryScene::Relationship(cocos2d::Ref *sender){
 
 void DiaryScene::Back(cocos2d::Ref *sender){
     auto director = Director::getInstance();
-    director->replaceScene(GameUiScene::createScene());
+    director->replaceScene(WholeFarmScene::createScene());
 }

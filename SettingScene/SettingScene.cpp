@@ -8,7 +8,7 @@
 
 #include "SettingScene.hpp"
 #include "SettingSceneReader.hpp"
-#include "GameUiScene.hpp"
+#include "WholeFarmScene.hpp"
 #include "ExitScene.hpp"
 #include "LoadGameScene.hpp"
 #include "HistoryUtil.hpp"
@@ -77,5 +77,5 @@ void SettingScene::Exit(cocos2d::Ref *sender){
 
 void SettingScene::Back(cocos2d::Ref *sender){
     auto director = Director::getInstance();
-    director->replaceScene(GameUiScene::createScene());
+    director->replaceScene(WholeFarmScene::createScene());
 }
