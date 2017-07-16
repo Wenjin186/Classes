@@ -34,9 +34,17 @@ public:
     void Settings(Ref *sender);
     
     void Trade(Ref *sender);
+    
+    virtual void update(float delta);
+    
+    
+    //测试方法
+    void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
 
 private:
     Protagonist *pro = nullptr;
+    EventListenerKeyboard *keyListener = nullptr;
+    
 };
 
 #endif /* GameUiScene_hpp */
