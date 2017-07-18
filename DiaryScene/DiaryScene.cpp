@@ -13,6 +13,8 @@
 #include "InventoryScene.hpp"
 #include "MapScene.hpp"
 #include "RelationshipScene.hpp"
+#include "HistoryUtil.hpp"
+#include "NiuPengScene.hpp"
 
 Scene *DiaryScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -70,6 +72,13 @@ void DiaryScene::Relationship(cocos2d::Ref *sender){
 }
 
 void DiaryScene::Back(cocos2d::Ref *sender){
-    auto director = Director::getInstance();
-    director->replaceScene(WholeFarmScene::createScene());
+    if (HistoryUtil::getInstance()->checkSceneHistory("WholeFarmScene")) {
+        auto director = Director::getInstance();
+        director->replaceScene(WholeFarmScene::createScene());
+    }
+    else if (HistoryUtil::getInstance()->checkSceneHistory("NiuPengScene")){
+        auto director = Director::getInstance();
+        director->replaceScene(NiuPengScene::createScene());
+    }
+    
 }

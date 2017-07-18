@@ -10,6 +10,8 @@
 #include "WholeFarmSceneReader.hpp"
 #include "SettingScene.hpp"
 #include "DiaryScene.hpp"
+#include "NiuPengScene.hpp"
+#include "HistoryUtil.hpp"
 
 Scene *WholeFarmScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -30,10 +32,19 @@ bool WholeFarmScene::init(){
     return true;
 }
 
+void WholeFarmScene::onEnter(){
+    Scene::onEnter();
+    
+    map = (TMXTiledMap *)getChildByName("WholeFarmMap");
+    group = map->getObjectGroup("door");
+    niupengDoor = group->getObject("niupengDoor");
+}
+
 void WholeFarmScene::onEnterTransitionDidFinish(){
+    Scene::onEnterTransitionDidFinish();
     pro = Protagonist::create("character/protagonist.png");
     pro->setAnchorPoint(Vec2(0.5, 0));
-    pro->setPosition(Vec2(400,0));
+    pro->setPosition(Vec2(720,160));
     this->addChild(pro);
 }
 
@@ -46,11 +57,17 @@ Widget::ccWidgetClickCallback WholeFarmScene::onLocateClickCallback(const std::s
     }else if (callBackName=="Trade"){
         return CC_CALLBACK_1(WholeFarmScene::Trade, this);
     }
-    
     return nullptr;
 }
 
+void WholeFarmScene::setSceneHistory(){
+    auto his = HistoryUtil::getInstance();
+    string his_str = "WholeFarmScene";
+    his->pushSceneHistory(his_str);
+}
+
 void WholeFarmScene::Diary(cocos2d::Ref *sender){
+    setSceneHistory();
     auto director = Director::getInstance();
     director->replaceScene(DiaryScene::createScene());
 }
@@ -66,6 +83,17 @@ void WholeFarmScene::Trade(cocos2d::Ref *sender){
 
 void WholeFarmScene::update(float delta){
    // CCLOG("hello world!!");
+    //如果主角和牛棚门碰撞
+    Vec2 proPosi = map->convertToNodeSpace(pro->getPosition());
+    //CCLOG("%f", proPosi.x);
+    if ( ( proPosi.x > niupengDoor.at("x").asFloat()  && proPosi.x < (niupengDoor.at("x").asFloat()+ niupengDoor.at("width").asFloat()) )
+        
+        &&  ( proPosi.y > niupengDoor.at("y").asFloat() && proPosi.y < (niupengDoor.at("y").asFloat() + niupengDoor.at("height").asFloat())  )
+        
+        ) {
+        auto director = Director::getInstance();
+        director->replaceScene(NiuPengScene::createScene());
+    }
 }
 
 //测试方法

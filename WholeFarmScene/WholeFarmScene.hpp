@@ -24,10 +24,13 @@ public:
     virtual bool init();
     
     void onEnterTransitionDidFinish();
+    void onEnter();
     
     CREATE_FUNC(WholeFarmScene);
     
     virtual Widget::ccWidgetClickCallback onLocateClickCallback(const std::string &callBackName);
+    
+    void setSceneHistory();
     
     void Diary(Ref *sender);
     
@@ -44,7 +47,9 @@ public:
 private:
     Protagonist *pro = nullptr;
     EventListenerKeyboard *keyListener = nullptr;
-    
+    TMXTiledMap *map = nullptr;
+    TMXObjectGroup *group = nullptr;
+    ValueMap niupengDoor;
 };
 
 #endif /* GameUiScene_hpp */
