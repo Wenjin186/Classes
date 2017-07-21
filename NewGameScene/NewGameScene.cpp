@@ -11,6 +11,10 @@
 #include "StartGameScene.h"
 #include "WholeFarmScene.hpp"
 
+extern "C"{
+#include "MxzyDatabase.h"
+}
+
 
 Scene *NewGameScene::createScene(){
     CSLoader *instance = CSLoader::getInstance();
@@ -38,7 +42,15 @@ Widget::ccWidgetClickCallback NewGameScene::onLocateClickCallback(const std::str
     return nullptr;
 }
 
+//开始游戏,这里调用后台数据库的函数
 void NewGameScene::StartButton(Ref *sender){
+    FILE *fp = NULL;
+    int ret = createOrGetLocalStorage(&fp, "storage.bin");
+    if (ret == ERROR) {
+        CCLOG("create or get local storage failture");//以后会修改这里，如果读取失败 调到处理错误的场景
+    }
+    closeLocalStorage(fp);
+    
     auto director = Director::getInstance();
     director->replaceScene(WholeFarmScene::createScene());
 }
