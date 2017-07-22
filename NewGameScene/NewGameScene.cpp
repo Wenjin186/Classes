@@ -10,6 +10,7 @@
 #include "NewGameSceneReader.h"
 #include "StartGameScene.h"
 #include "WholeFarmScene.hpp"
+#include "MxzyStorage.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -44,12 +45,27 @@ Widget::ccWidgetClickCallback NewGameScene::onLocateClickCallback(const std::str
 
 //开始游戏,这里调用后台数据库的函数
 void NewGameScene::StartButton(Ref *sender){
-    FILE *fp = NULL;
-    int ret = createOrGetLocalStorage(&fp, "storage.bin");
+    tf = (TextField *)getChildByName("EnterNameTextField");
+    string char_str = tf->getString();
+    
+    int ret = createCharacter(MxzyStorage::getInstance()->getCharacterTable());
+    CCLOG("ret=%d\n", ret);
     if (ret == ERROR) {
-        CCLOG("create or get local storage failture");//以后会修改这里，如果读取失败 调到处理错误的场景
+        //角色满了，无法创建，跳转错误界面
+        CCLOG("角色满了，无法创建");
+        return;
     }
-    closeLocalStorage(fp);
+    
+    //MxzyStorage中的CharacterRow已经绑定id为ret，这里不需要释放crow指向的任何内存空间
+    int rett = getCharacterRowById(&MxzyStorage::getInstance()->crow, MxzyStorage::getInstance()->getCharacterTable(), ret);
+    
+    if (rett==ERROR) {
+        CCLOG("没有该角色ID的任何信息");
+        return;
+    }
+    
+    //设置角色的姓名
+    setCharacterName(MxzyStorage::getInstance()->crow, char_str.c_str());
     
     auto director = Director::getInstance();
     director->replaceScene(WholeFarmScene::createScene());

@@ -2,6 +2,7 @@
 #include "StartGameScene.h"
 #include "NewGameScene.h"
 #include "TestScene.hpp"
+#include "MxzyStorage.hpp"
 
 USING_NS_CC;
 //test
@@ -81,6 +82,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     register_all_packages();
 
+    //进入游戏之前就读取数据存储文件（以后这里可以运行一个加载界面把这条语句放在加载界面中）
+    MxzyStorage::getInstance()->gameStart(); //fp 和 crow都初始化好了
+    
     // create a scene. it's an autorelease object
     auto scene = StartGameScene::createScene();
 

@@ -12,6 +12,7 @@
 #include "NewGameScene.h"
 #include "HistoryUtil.hpp"
 #include "SettingScene.hpp"
+#include "MxzyStorage.hpp"
 
 Scene *LoadGameScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -25,6 +26,36 @@ bool LoadGameScene::init(){
         return false;
     }
     return true;
+}
+
+void LoadGameScene::onEnter(){
+    Scene::onEnter();
+    
+    TextField *char1 = (TextField *)getChildByName("CharacterRow1");
+    TextField *char2 = (TextField *)getChildByName("CharacterRow2");
+    TextField *char3 = (TextField *)getChildByName("CharacterRow3");
+    
+    CharacterRow *row = NULL;
+    
+    int ret = getCharacterRowById(&row, MxzyStorage::getInstance()->table, 1);
+    if (ret == ERROR) {
+        char1->setString("No Record");
+    }else
+        char1->setString(getCharacterName(row));
+    
+    ret = getCharacterRowById(&row, MxzyStorage::getInstance()->table, 2);
+    if (ret == ERROR) {
+        char2->setString("No Record");
+    }else
+        char2->setString(getCharacterName(row));
+    
+    ret = getCharacterRowById(&row, MxzyStorage::getInstance()->table, 3);
+    if (ret == ERROR) {
+        char3->setString("No Record");
+    }else
+        char3->setString(getCharacterName(row));
+    
+    
 }
 
 void LoadGameScene::onEnterTransitionDidFinish(){

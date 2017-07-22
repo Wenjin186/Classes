@@ -23,6 +23,8 @@ public:
     
     virtual bool init();
     
+    void onEnter();
+    
     void onEnterTransitionDidFinish();
     
     CREATE_FUNC(LoadGameScene);

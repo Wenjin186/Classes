@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "cocostudio/WidgetCallBackHandlerProtocol.h"
+#include "ui/CocosGUI.h"
 
 USING_NS_CC;
 using namespace ui;
@@ -30,6 +31,9 @@ public:
     void StartButton(Ref *sender);
     
     void BackButton(Ref *sender);
+    
+private:
+    TextField *tf;
     
 };
 

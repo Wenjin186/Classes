@@ -7,6 +7,7 @@
 #include "OptionScene.hpp"
 #include "LoadGameScene.hpp"
 #include "HistoryUtil.hpp"
+#include "MxzyStorage.hpp"
 
 
 Scene* StartGameScene::createScene()
@@ -59,8 +60,10 @@ void StartGameScene::option(cocos2d::Ref *sender){
 }
 
 void StartGameScene::exitGame(cocos2d::Ref *sender){
-    Director::getInstance()->end();
     HistoryUtil::purge();
+    MxzyStorage::getInstance()->gameOver(); //释放CharacterTable 保存文件
+    MxzyStorage::purge();
+    Director::getInstance()->end();
 }
 
 void StartGameScene::loadGame(cocos2d::Ref *sender){

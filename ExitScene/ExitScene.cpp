@@ -10,6 +10,8 @@
 #include "ExitSceneReader.hpp"
 #include "StartGameScene.h"
 #include "WholeFarmScene.hpp"
+#include "HistoryUtil.hpp"
+#include "MxzyStorage.hpp"
 
 Scene* ExitScene::createScene()
 {
@@ -50,6 +52,8 @@ void ExitScene::Title(cocos2d::Ref *sender){
 }
 
 void ExitScene::Desktop(cocos2d::Ref *sender){
-    auto director = Director::getInstance();
-    director->end();
+    HistoryUtil::purge();
+    MxzyStorage::getInstance()->gameOver(); //释放CharacterTable 保存文件
+    MxzyStorage::purge();
+    Director::getInstance()->end();
 }
