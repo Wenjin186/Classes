@@ -42,7 +42,7 @@ void WholeFarmScene::onEnter(){
 
 void WholeFarmScene::onEnterTransitionDidFinish(){
     Scene::onEnterTransitionDidFinish();
-    pro = Protagonist::create("character/protagonist.png");
+    pro = Protagonist::getInstance();
     pro->setAnchorPoint(Vec2(0.5, 0));
     pro->setPosition(Vec2(720,160));
     this->addChild(pro);

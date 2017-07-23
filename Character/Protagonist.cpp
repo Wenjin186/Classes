@@ -8,6 +8,8 @@
 
 #include "Protagonist.hpp"
 
+//static Protagonist *pro = nullptr;
+
 bool Protagonist::initWithFile(const std::string &filename){
     if ( ! Sprite::initWithFile(filename) ) {
         return false;
@@ -22,6 +24,10 @@ bool Protagonist::initWithFile(const std::string &filename){
 }
 
 Protagonist *Protagonist::create(const string &filename){
+//    if (pro != nullptr) {
+//        return pro;
+//    }
+    
     
     Protagonist *pro = new (std::nothrow) Protagonist();
     if (pro && pro->initWithFile(filename))
@@ -31,6 +37,10 @@ Protagonist *Protagonist::create(const string &filename){
     }
     CC_SAFE_DELETE(pro);
     return nullptr;
+}
+
+Protagonist *Protagonist::getInstance(){
+    return Protagonist::create("character/protagonist.png");
 }
 
 void Protagonist::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
@@ -80,3 +90,24 @@ void Protagonist::update(float delta){
         setPosition(getPosition()-Vec2(0,speed));
     }
 }
+
+//void Protagonist::setProtagonistId(int id){
+//    this->pro_id = id;
+//}
+//
+//void Protagonist::setProtagonistName(string &str){
+//    this->pro_name = str;
+//}
+//
+//void Protagonist::setGoodsBag(int current_level, int goodsbag_max){
+//    bag = new GoodsBag(current_level, goodsbag_max);
+//}
+//
+//void Protagonist::freeGoodsBag(){
+//    CC_SAFE_FREE(bag);
+//}
+//
+//int Protagonist::getProtagonistId(){
+//    return pro_id;
+//}
+

@@ -10,6 +10,7 @@
 #define MxzyStorage_hpp
 
 #include "cocos2d.h"
+#include "ProtagonistData.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -31,8 +32,13 @@ public:
     FILE *fp;
     CharacterRow *crow;
     CharacterTable *table;
+    
+    int createNewProtagonist();
+    ProtagonistData *getProtagonistDataById(int id);
+    
 private:
     static MxzyStorage *_storage;
+    ProtagonistData *_data;
 };
 
 #endif /* MxzyStorage_hpp */

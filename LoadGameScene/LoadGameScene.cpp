@@ -35,27 +35,26 @@ void LoadGameScene::onEnter(){
     TextField *char2 = (TextField *)getChildByName("CharacterRow2");
     TextField *char3 = (TextField *)getChildByName("CharacterRow3");
     
-    CharacterRow *row = NULL;
+    auto storage = MxzyStorage::getInstance();
     
-    int ret = getCharacterRowById(&row, MxzyStorage::getInstance()->table, 1);
-    if (ret == ERROR) {
+    ProtagonistData *data1 = storage->getProtagonistDataById(1);
+    ProtagonistData *data2 = storage->getProtagonistDataById(2);
+    ProtagonistData *data3 = storage->getProtagonistDataById(3);
+    
+    if (data1 == nullptr) {
         char1->setString("No Record");
     }else
-        char1->setString(getCharacterName(row));
+        char1->setString(data1->getName());
     
-    ret = getCharacterRowById(&row, MxzyStorage::getInstance()->table, 2);
-    if (ret == ERROR) {
+    if (data2 == nullptr) {
         char2->setString("No Record");
     }else
-        char2->setString(getCharacterName(row));
+        char2->setString(data2->getName());
     
-    ret = getCharacterRowById(&row, MxzyStorage::getInstance()->table, 3);
-    if (ret == ERROR) {
+    if (data3 == nullptr) {
         char3->setString("No Record");
     }else
-        char3->setString(getCharacterName(row));
-    
-    
+        char3->setString(data3->getName());
 }
 
 void LoadGameScene::onEnterTransitionDidFinish(){

@@ -52,5 +52,24 @@ int MxzyStorage::gameOver(){
     toWriteData(fp, table);
     freeCharacterTable(table);
     closeLocalStorage(fp);
+    
+    CC_SAFE_DELETE(_data);
     return SUCCESS;
+}
+
+int MxzyStorage::createNewProtagonist(){
+    int id = createCharacter(table);
+    return id;
+}
+
+//当你获得该角色信息的时候，已经把CharacterRow赋值了
+ProtagonistData *MxzyStorage::getProtagonistDataById(int id){
+    int ret = getCharacterRowById(&crow, table, id);
+    if (ret == ERROR) {
+        CCLOG("没有该角色的任何信息");
+        return nullptr;
+    }
+    _data = new ProtagonistData(crow);
+    
+    return _data;
 }
