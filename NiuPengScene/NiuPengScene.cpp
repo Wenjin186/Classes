@@ -12,7 +12,7 @@
 #include "DiaryScene.hpp"
 #include "WholeFarmScene.hpp"
 #include "Cow.hpp"
-
+#include "MxzyStorage.hpp"
 //不要修改createScene和init中的任何代码，避免出现问题
 
 Scene* NiuPengScene::createScene()
@@ -27,8 +27,15 @@ Scene* NiuPengScene::createScene()
 //此方法里不要写任何有关添加节点（精灵，图层）的方法，因为这个函数调用的时候，csb文件还没有完全加载
 bool NiuPengScene::init()
 {
+    
+    
     if ( !Scene::init() )
         return false;
+    
+    auto storage = MxzyStorage::getInstance();
+    ProtagonistData *data = storage->getProtagonistDataById(1);
+    
+    CCLOG("--------------------%s",data->getName().c_str());
     return true;
 }
 
