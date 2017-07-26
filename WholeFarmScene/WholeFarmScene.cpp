@@ -12,6 +12,7 @@
 #include "DiaryScene.hpp"
 #include "NiuPengScene.hpp"
 #include "HistoryUtil.hpp"
+#include "MxzyStorage.hpp"
 
 Scene *WholeFarmScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -38,6 +39,14 @@ void WholeFarmScene::onEnter(){
     map = (TMXTiledMap *)getChildByName("WholeFarmMap");
     group = map->getObjectGroup("door");
     niupengDoor = group->getObject("niupengDoor");
+    
+    //测试一下数据库
+    ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
+    GoodsBag *bag = data->getGoodsBag();
+    CCLOG("bag level = %d", bag->getCurrentLevel());
+    CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
+    
+    
 }
 
 void WholeFarmScene::onEnterTransitionDidFinish(){
@@ -46,6 +55,10 @@ void WholeFarmScene::onEnterTransitionDidFinish(){
     pro->setAnchorPoint(Vec2(0.5, 0));
     pro->setPosition(Vec2(720,160));
     this->addChild(pro);
+    
+    //
+    auto follow = Follow::create(pro, Rect::ZERO);
+    runAction(follow);
 }
 
 Widget::ccWidgetClickCallback WholeFarmScene::onLocateClickCallback(const std::string &callBackName){
@@ -94,6 +107,8 @@ void WholeFarmScene::update(float delta){
         auto director = Director::getInstance();
         director->replaceScene(NiuPengScene::createScene());
     }
+    
+    
 }
 
 //测试方法

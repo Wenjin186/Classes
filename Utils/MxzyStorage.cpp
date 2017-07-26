@@ -10,6 +10,10 @@
 
 MxzyStorage *MxzyStorage::_storage = nullptr;
 
+MxzyStorage::~MxzyStorage(){
+    gameOver();
+}
+
 MxzyStorage *MxzyStorage::getInstance(){
     
     if (!_storage) {
@@ -52,6 +56,7 @@ int MxzyStorage::gameOver(){
     toWriteData(fp, table);
     freeCharacterTable(table);
     closeLocalStorage(fp);
+    freeGlobalInfo(info);
     
     CC_SAFE_DELETE(_data);
     return SUCCESS;
@@ -59,6 +64,17 @@ int MxzyStorage::gameOver(){
 
 int MxzyStorage::createNewProtagonist(){
     int id = createCharacter(table);
+    
+    if (id == ERROR) {
+        return id;
+    }
+    
+    getCharacterRowById(&crow, table, id);
+    
+    //创建新角色后的初始化工作放在这里
+    crow->bag.bag_level = 1; //初始化背包等级
+    
+    
     return id;
 }
 
@@ -69,7 +85,31 @@ ProtagonistData *MxzyStorage::getProtagonistDataById(int id){
         CCLOG("没有该角色的任何信息");
         return nullptr;
     }
-    _data = new ProtagonistData(crow);
+    _data = new ProtagonistData(crow, info);
     
     return _data;
+}
+
+int MxzyStorage::writeGlobalInfo(){
+    int ret = createOrGetGlobalInfoFile(&fp_global, ".global.bin");
+    if (ret == ERROR) {
+        CCLOG("创建GlobalInfo文件失败");
+        return ERROR;
+    }
+    initGlobalInfo(&info);
+    
+    enterGlobalInfoDataBeforeSaving(info);
+    
+    toWriteGlobalInfo(fp_global, info);
+    //freeGlobalInfo(info);
+    closeGlobalInfoFile(fp_global);
+    return SUCCESS;
+}
+
+void MxzyStorage::setCurrentProId(int id){
+    this->current_id = id;
+}
+
+int MxzyStorage::getCurrentProId(){
+    return current_id;
 }

@@ -10,6 +10,7 @@
 #define ProtagonistData_hpp
 
 #include "cocos2d.h"
+#include "GoodsBag.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -19,15 +20,19 @@ using namespace std;
 
 class ProtagonistData{
 public:
-    ProtagonistData(CharacterRow *crow);
+    ProtagonistData(CharacterRow *crow, GlobalInfo *info);
+    ~ProtagonistData();
     void setId(int id);
     int getId();
     
     void setName(string &name);
     string &getName();
+    GoodsBag *getGoodsBag();
 private:
     string name;
     CharacterRow *crow;
+    GlobalInfo *info;
+    GoodsBag *bag;
 };
 
 #endif /* ProtagonistData_hpp */

@@ -74,7 +74,8 @@ void NewGameScene::StartButton(Ref *sender){
         return;
     }
     
-    ProtagonistData *data= storage->getProtagonistDataById(pro_id);
+    storage->setCurrentProId(pro_id);
+    ProtagonistData *data= storage->getProtagonistDataById(storage->getCurrentProId());
     data->setName(char_str);
     
     auto director = Director::getInstance();

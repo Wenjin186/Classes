@@ -61,7 +61,7 @@ void StartGameScene::option(cocos2d::Ref *sender){
 
 void StartGameScene::exitGame(cocos2d::Ref *sender){
     HistoryUtil::purge();
-    MxzyStorage::getInstance()->gameOver(); //释放CharacterTable 保存文件
+    //MxzyStorage::getInstance()->gameOver(); //释放CharacterTable 保存文件
     MxzyStorage::purge();
     Director::getInstance()->end();
 }

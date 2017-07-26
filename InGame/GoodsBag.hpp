@@ -18,10 +18,13 @@ extern "C"{
 class GoodsBag{
 public:
     GoodsBag(int current_level, int goodsbag_max);
+    ~GoodsBag();
     void setCurrentLevel(int current_level);
+    int getCurrentLevel();
+    int getGoodsBagCapacity();
 private:
     int current_level;
-    int goodsbag_max;
+    int capacity;
     std::vector<Goods> *goods_vec;
 };
 
