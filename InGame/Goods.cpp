@@ -8,6 +8,10 @@
 
 #include "Goods.hpp"
 
+Goods::~Goods(){
+    CCLOG("Goods has been deleted.");
+}
+
 Goods::Goods(int goods_id, int amount, int max){
     CCLOG("hello world!");
     this->goods_id = goods_id;

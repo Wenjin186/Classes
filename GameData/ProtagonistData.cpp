@@ -8,8 +8,13 @@
 
 #include "ProtagonistData.hpp"
 
-ProtagonistData::ProtagonistData(CharacterRow *crow){
+ProtagonistData::ProtagonistData(CharacterRow *crow, GlobalInfo *info){
     this->crow = crow;
+    this->info = info;
+}
+
+ProtagonistData::~ProtagonistData(){
+    CC_SAFE_DELETE(bag);
 }
 
 void ProtagonistData::setId(int id){
@@ -27,4 +32,19 @@ void ProtagonistData::setName(string &name){
 string  &ProtagonistData::getName(){
     name = string(crow->character_name);
     return name;
+}
+
+GoodsBag *ProtagonistData::getGoodsBag(){
+    int level = crow->bag.bag_level;
+    int amount = 0;
+    for (int i = 0; i < GOODSBAGINFO_MAX; i++) {
+        if (level == info->goodsbag_info.levels[i].bag_level ){
+            amount = info->goodsbag_info.levels[i].bag_capacity;
+            break;
+        }
+    }
+    
+    
+    bag = new GoodsBag(level, amount);
+    return bag;
 }

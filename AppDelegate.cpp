@@ -84,6 +84,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     //进入游戏之前就读取数据存储文件（以后这里可以运行一个加载界面把这条语句放在加载界面中）
     MxzyStorage::getInstance()->gameStart(); //fp 和 crow都初始化好了
+    MxzyStorage::getInstance()->writeGlobalInfo();
     
     // create a scene. it's an autorelease object
     auto scene = StartGameScene::createScene();

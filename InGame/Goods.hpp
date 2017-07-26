@@ -14,6 +14,7 @@ using namespace std;
 
 class Goods{
 public:
+    ~Goods();
     Goods(int goods_id, int amount, int max);
     void addAnother();
     int getGoodsId();
