@@ -13,6 +13,7 @@
 #include "NiuPengScene.hpp"
 #include "HistoryUtil.hpp"
 #include "MxzyStorage.hpp"
+#include "SeedSeller.hpp"
 
 Scene *WholeFarmScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -45,8 +46,6 @@ void WholeFarmScene::onEnter(){
     GoodsBag *bag = data->getGoodsBag();
     CCLOG("bag level = %d", bag->getCurrentLevel());
     CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
-    
-    
 }
 
 void WholeFarmScene::onEnterTransitionDidFinish(){
@@ -55,6 +54,10 @@ void WholeFarmScene::onEnterTransitionDidFinish(){
     pro->setAnchorPoint(Vec2(0.5, 0));
     pro->setPosition(Vec2(720,160));
     this->addChild(pro);
+    
+    auto seller = SeedSeller::getInstance();
+    seller->setPosition(Vec2(720,250));
+    addChild(seller);
     
     //
     auto follow = Follow::create(pro, Rect::ZERO);
