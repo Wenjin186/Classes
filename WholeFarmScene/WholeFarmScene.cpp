@@ -27,10 +27,7 @@ bool WholeFarmScene::init(){
     if (!Scene::init()) {
         return false;
     }
-    //测试方法
-//    keyListener = EventListenerKeyboard::create();
-//    keyListener->onKeyPressed = CC_CALLBACK_2(WholeFarmScene::onKeyPressed, this);
-//    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyListener, this);
+    
     return true;
 }
 
@@ -40,6 +37,9 @@ void WholeFarmScene::onEnter(){
     map = (TMXTiledMap *)getChildByName("WholeFarmMap");
     group = map->getObjectGroup("door");
     niupengDoor = group->getObject("niupengDoor");
+    
+    button_layer = getChildByName<Layer *>("ButtonLayer");
+    button_layer->setAnchorPoint(Vec2(0.5,0.5));
     
     //测试一下数据库
     ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
@@ -52,7 +52,7 @@ void WholeFarmScene::onEnterTransitionDidFinish(){
     Scene::onEnterTransitionDidFinish();
     pro = Protagonist::getInstance();
     pro->setAnchorPoint(Vec2(0.5, 0));
-    pro->setPosition(Vec2(720,160));
+    pro->setPosition(Vec2(500,160));
     this->addChild(pro);
     
     auto seller = SeedSeller::getInstance();
@@ -60,8 +60,14 @@ void WholeFarmScene::onEnterTransitionDidFinish(){
     addChild(seller);
     
     //
-    auto follow = Follow::create(pro, Rect::ZERO);
-    runAction(follow);
+    
+    camera = Camera::create();
+    camera->setCameraFlag(CameraFlag::USER1);
+    addChild(camera);
+    setCameraMask(2);
+    camera->setAnchorPoint(Vec2(0.5,0.5));
+    camera->setPosition(pro->getPosition());
+    
 }
 
 Widget::ccWidgetClickCallback WholeFarmScene::onLocateClickCallback(const std::string &callBackName){
@@ -111,7 +117,8 @@ void WholeFarmScene::update(float delta){
         director->replaceScene(NiuPengScene::createScene());
     }
     
-    
+    camera->setPosition(pro->getPosition());
+    button_layer->setPosition(pro->getPosition());
 }
 
 //测试方法

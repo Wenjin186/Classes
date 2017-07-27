@@ -50,6 +50,8 @@ private:
     TMXTiledMap *map = nullptr;
     TMXObjectGroup *group = nullptr;
     ValueMap niupengDoor;
+    Camera *camera = nullptr;
+    Layer *button_layer = nullptr;
 };
 
 #endif /* GameUiScene_hpp */

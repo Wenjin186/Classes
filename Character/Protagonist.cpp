@@ -10,17 +10,69 @@
 
 //static Protagonist *pro = nullptr;
 
-bool Protagonist::initWithFile(const std::string &filename){
-    if ( ! Sprite::initWithFile(filename) ) {
+//Protagonist::Protagonist(){
+//    //Sprite::Sprite();
+//
+//    
+//    //runAction(rightRepeat);
+//}
+
+bool Protagonist::init(){
+    if ( ! Sprite::init() ) {
         return false;
     }
+    
     keyListener = EventListenerKeyboard::create();
     keyListener->onKeyPressed = CC_CALLBACK_2(Protagonist::onKeyPressed, this);
     keyListener->onKeyReleased = CC_CALLBACK_2(Protagonist::onKeyReleased, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyListener, this);
     
     scheduleUpdate();
+    
     return true;
+}
+
+bool Protagonist::initWithFile(const std::string &filename){
+    if ( ! Sprite::initWithFile(filename) ) {
+        return false;
+    }
+    
+    
+    keyListener = EventListenerKeyboard::create();
+    keyListener->onKeyPressed = CC_CALLBACK_2(Protagonist::onKeyPressed, this);
+    keyListener->onKeyReleased = CC_CALLBACK_2(Protagonist::onKeyReleased, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyListener, this);
+    
+    rightMoveAni = Animation::create();
+    leftMoveAni = Animation::create();
+    downMoveAni = Animation::create();
+    upMoveAni = Animation::create();
+    
+    rightMoveAni->addSpriteFrameWithFile("character/abandon/right1.png");
+    rightMoveAni->addSpriteFrameWithFile("character/abandon/right2.png");
+    rightMoveAni->addSpriteFrameWithFile("character/abandon/right3.png");
+    rightMoveAni->addSpriteFrameWithFile("character/abandon/right4.png");
+    rightMoveAni->setDelayPerUnit(3.0f/15.0f);
+    rightMoveAni->setRestoreOriginalFrame(true);
+    rightMoveAnimate = Animate::create(rightMoveAni);
+    rightRepeat = RepeatForever::create(rightMoveAnimate);
+    rightRepeat->retain();
+    rightRepeat->setTag(RIGHT_MOVE);
+    //runAction(rightRepeat);
+    
+    scheduleUpdate();
+    return true;
+}
+
+Protagonist *Protagonist::create(){
+    Protagonist *pro = new (std::nothrow) Protagonist();
+    if (pro && pro->init())
+    {
+        pro->autorelease();
+        return pro;
+    }
+    CC_SAFE_DELETE(pro);
+    return nullptr;
 }
 
 Protagonist *Protagonist::create(const string &filename){
@@ -40,7 +92,10 @@ Protagonist *Protagonist::create(const string &filename){
 }
 
 Protagonist *Protagonist::getInstance(){
-    return Protagonist::create("character/protagonist.png");
+    Protagonist *pro =  Protagonist::create("character/abandon/front1.png");
+    
+    
+    return pro;
 }
 
 void Protagonist::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
@@ -78,7 +133,11 @@ void Protagonist::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *
 void Protagonist::update(float delta){
     int speed = 3;
     if (rightMove==true) {
+        CCLOG("**************");
         setPosition(getPosition()+Vec2(speed, 0));
+        if (getActionByTag(RIGHT_MOVE) == nullptr) {
+            runAction(rightRepeat);
+        }
     }
     if (upMove==true) {
         setPosition(getPosition()+Vec2(0, speed));

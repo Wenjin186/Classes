@@ -12,7 +12,7 @@ bool SeedSeller::initWithFile(const std::string &filename){
     if ( ! Sprite::initWithFile(filename) ) {
         return false;
     }
-    //scheduleUpdate();
+    scheduleUpdate();
     return true;
 }
 

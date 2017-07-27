@@ -49,7 +49,7 @@ void NiuPengScene::onEnter(){
     
     //切换到牛棚场景的时候，主角一定在牛棚门口，修改下面的代码可以改变主角出现的位置
     Vec2 proPosi(niupengDoor.at("x").asFloat()+niupengDoor.at("width").asFloat()/2, niupengDoor.at("y").asFloat());
-    pro = Protagonist::create("character/protagonist.png");
+    pro = Protagonist::getInstance();
     pro->setAnchorPoint(Vec2(0.5, 0));
     pro->setPosition(proPosi);
     this->addChild(pro);
