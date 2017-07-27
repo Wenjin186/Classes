@@ -48,10 +48,10 @@ bool Protagonist::initWithFile(const std::string &filename){
     downMoveAni = Animation::create();
     upMoveAni = Animation::create();
     
-    rightMoveAni->addSpriteFrameWithFile("character/abandon/right1.png");
     rightMoveAni->addSpriteFrameWithFile("character/abandon/right2.png");
     rightMoveAni->addSpriteFrameWithFile("character/abandon/right3.png");
     rightMoveAni->addSpriteFrameWithFile("character/abandon/right4.png");
+    rightMoveAni->addSpriteFrameWithFile("character/abandon/right1.png");
     rightMoveAni->setDelayPerUnit(3.0f/15.0f);
     rightMoveAni->setRestoreOriginalFrame(true);
     rightMoveAnimate = Animate::create(rightMoveAni);
@@ -59,10 +59,10 @@ bool Protagonist::initWithFile(const std::string &filename){
     rightRepeat->retain();
     rightRepeat->setTag(RIGHT_MOVE);
     
-    leftMoveAni->addSpriteFrameWithFile("character/abandon/left1.png");
     leftMoveAni->addSpriteFrameWithFile("character/abandon/left2.png");
     leftMoveAni->addSpriteFrameWithFile("character/abandon/left3.png");
     leftMoveAni->addSpriteFrameWithFile("character/abandon/left4.png");
+    leftMoveAni->addSpriteFrameWithFile("character/abandon/left1.png");
     leftMoveAni->setDelayPerUnit(3.0f/15.0f);
     leftMoveAni->setRestoreOriginalFrame(true);
     leftMoveAnimate = Animate::create(leftMoveAni);
@@ -70,10 +70,11 @@ bool Protagonist::initWithFile(const std::string &filename){
     leftRepeat->retain();
     leftRepeat->setTag(LEFT_MOVE);
     
-    upMoveAni->addSpriteFrameWithFile("character/abandon/back1.png");
+    
     upMoveAni->addSpriteFrameWithFile("character/abandon/back2.png");
     upMoveAni->addSpriteFrameWithFile("character/abandon/back3.png");
     upMoveAni->addSpriteFrameWithFile("character/abandon/back4.png");
+    upMoveAni->addSpriteFrameWithFile("character/abandon/back1.png");
     upMoveAni->setDelayPerUnit(3.0f/15.0f);
     upMoveAni->setRestoreOriginalFrame(true);
     upMoveAnimate = Animate::create(upMoveAni);
@@ -81,10 +82,10 @@ bool Protagonist::initWithFile(const std::string &filename){
     upRepeat->retain();
     upRepeat->setTag(UP_MOVE);
     
-    downMoveAni->addSpriteFrameWithFile("character/abandon/front1.png");
     downMoveAni->addSpriteFrameWithFile("character/abandon/front2.png");
     downMoveAni->addSpriteFrameWithFile("character/abandon/front3.png");
     downMoveAni->addSpriteFrameWithFile("character/abandon/front4.png");
+    downMoveAni->addSpriteFrameWithFile("character/abandon/front1.png");
     downMoveAni->setDelayPerUnit(3.0f/15.0f);
     downMoveAni->setRestoreOriginalFrame(true);
     downMoveAnimate = Animate::create(downMoveAni);
@@ -133,16 +134,32 @@ Protagonist *Protagonist::getInstance(){
 void Protagonist::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){
     //CCLOG("Key pressed keycode = %d", keyCode);
     if (keyCode==EventKeyboard::KeyCode::KEY_RIGHT_ARROW) {
+        //if (!leftMove && !upMove && !downMove)
         rightMove = true;
+        leftMove = false;
+        downMove = false;
+        upMove = false;
+        
     }
     else if (keyCode==EventKeyboard::KeyCode::KEY_LEFT_ARROW){
+        rightMove = false;
         leftMove = true;
+        downMove = false;
+        upMove = false;
     }
     else if (keyCode==EventKeyboard::KeyCode::KEY_UP_ARROW){
+        //if (!leftMove && !rightMove && !downMove)
+        rightMove = false;
+        leftMove = false;
+        downMove = false;
         upMove = true;
     }
     else if (keyCode==EventKeyboard::KeyCode::KEY_DOWN_ARROW){
+        //if (!leftMove && !upMove && !rightMove)
+        rightMove = false;
+        leftMove = false;
         downMove = true;
+        upMove = false;
     }
 }
 
@@ -165,6 +182,7 @@ void Protagonist::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *
 void Protagonist::update(float delta){
     int speed = 3;
     if (rightMove==true) {
+        face = "right";
         setPosition(getPosition()+Vec2(speed, 0));
         if (getActionByTag(RIGHT_MOVE) == nullptr) {
             stopAllActions();
@@ -172,6 +190,7 @@ void Protagonist::update(float delta){
         }
     }
     if (upMove==true) {
+        face = "up";
         setPosition(getPosition()+Vec2(0, speed));
         if (getActionByTag(UP_MOVE) == nullptr) {
             stopAllActions();
@@ -179,6 +198,7 @@ void Protagonist::update(float delta){
         }
     }
     if (leftMove==true){
+        face = "left";
         setPosition(getPosition()-Vec2(speed, 0));
         if (getActionByTag(LEFT_MOVE) == nullptr) {
             stopAllActions();
@@ -186,15 +206,25 @@ void Protagonist::update(float delta){
         }
     }
     if (downMove==true) {
+        face = "down";
         setPosition(getPosition()-Vec2(0,speed));
         if (getActionByTag(DOWN_MOVE) == nullptr) {
             stopAllActions();
             runAction(downRepeat);
         }
     }
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
+    if (!rightMove && !leftMove && !upMove && !downMove) {
+        stopAllActions();
+        if (face=="right") {
+            setTexture("character/abandon/right1.png");
+        }else if (face=="left"){
+            setTexture("character/abandon/left1.png");
+        }else if (face=="up"){
+            setTexture("character/abandon/back1.png");
+        }else if (face=="down"){
+            setTexture("character/abandon/front1.png");
+        }
+    }
 //        stopAllActions();
 }
 

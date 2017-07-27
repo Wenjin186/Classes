@@ -71,6 +71,8 @@ private:
     RepeatForever *rightRepeat = nullptr;
     RepeatForever *downRepeat = nullptr;
     RepeatForever *upRepeat = nullptr;
+    
+    string face = "";
 };
 
 #endif /* Protagonist_hpp */
