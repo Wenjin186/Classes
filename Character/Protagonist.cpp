@@ -10,12 +10,12 @@
 
 //static Protagonist *pro = nullptr;
 
-//Protagonist::Protagonist(){
-//    //Sprite::Sprite();
-//
-//    
-//    //runAction(rightRepeat);
-//}
+Protagonist::~Protagonist(){
+    rightRepeat->release();
+    leftRepeat->release();
+    downRepeat->release();
+    upRepeat->release();
+}
 
 bool Protagonist::init(){
     if ( ! Sprite::init() ) {
@@ -58,7 +58,39 @@ bool Protagonist::initWithFile(const std::string &filename){
     rightRepeat = RepeatForever::create(rightMoveAnimate);
     rightRepeat->retain();
     rightRepeat->setTag(RIGHT_MOVE);
-    //runAction(rightRepeat);
+    
+    leftMoveAni->addSpriteFrameWithFile("character/abandon/left1.png");
+    leftMoveAni->addSpriteFrameWithFile("character/abandon/left2.png");
+    leftMoveAni->addSpriteFrameWithFile("character/abandon/left3.png");
+    leftMoveAni->addSpriteFrameWithFile("character/abandon/left4.png");
+    leftMoveAni->setDelayPerUnit(3.0f/15.0f);
+    leftMoveAni->setRestoreOriginalFrame(true);
+    leftMoveAnimate = Animate::create(leftMoveAni);
+    leftRepeat = RepeatForever::create(leftMoveAnimate);
+    leftRepeat->retain();
+    leftRepeat->setTag(LEFT_MOVE);
+    
+    upMoveAni->addSpriteFrameWithFile("character/abandon/back1.png");
+    upMoveAni->addSpriteFrameWithFile("character/abandon/back2.png");
+    upMoveAni->addSpriteFrameWithFile("character/abandon/back3.png");
+    upMoveAni->addSpriteFrameWithFile("character/abandon/back4.png");
+    upMoveAni->setDelayPerUnit(3.0f/15.0f);
+    upMoveAni->setRestoreOriginalFrame(true);
+    upMoveAnimate = Animate::create(upMoveAni);
+    upRepeat = RepeatForever::create(upMoveAnimate);
+    upRepeat->retain();
+    upRepeat->setTag(UP_MOVE);
+    
+    downMoveAni->addSpriteFrameWithFile("character/abandon/front1.png");
+    downMoveAni->addSpriteFrameWithFile("character/abandon/front2.png");
+    downMoveAni->addSpriteFrameWithFile("character/abandon/front3.png");
+    downMoveAni->addSpriteFrameWithFile("character/abandon/front4.png");
+    downMoveAni->setDelayPerUnit(3.0f/15.0f);
+    downMoveAni->setRestoreOriginalFrame(true);
+    downMoveAnimate = Animate::create(downMoveAni);
+    downRepeat = RepeatForever::create(downMoveAnimate);
+    downRepeat->retain();
+    downRepeat->setTag(DOWN_MOVE);
     
     scheduleUpdate();
     return true;
@@ -133,21 +165,37 @@ void Protagonist::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *
 void Protagonist::update(float delta){
     int speed = 3;
     if (rightMove==true) {
-        CCLOG("**************");
         setPosition(getPosition()+Vec2(speed, 0));
         if (getActionByTag(RIGHT_MOVE) == nullptr) {
+            stopAllActions();
             runAction(rightRepeat);
         }
     }
     if (upMove==true) {
         setPosition(getPosition()+Vec2(0, speed));
+        if (getActionByTag(UP_MOVE) == nullptr) {
+            stopAllActions();
+            runAction(upRepeat);
+        }
     }
     if (leftMove==true){
         setPosition(getPosition()-Vec2(speed, 0));
+        if (getActionByTag(LEFT_MOVE) == nullptr) {
+            stopAllActions();
+            runAction(leftRepeat);
+        }
     }
     if (downMove==true) {
         setPosition(getPosition()-Vec2(0,speed));
+        if (getActionByTag(DOWN_MOVE) == nullptr) {
+            stopAllActions();
+            runAction(downRepeat);
+        }
     }
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
+//        stopAllActions();
 }
 
 //void Protagonist::setProtagonistId(int id){

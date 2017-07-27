@@ -24,6 +24,7 @@ class Protagonist : public Sprite{
 public:
 
     //Protagonist();
+    ~Protagonist();
     static Protagonist *getInstance();
     virtual bool initWithFile(const std::string& filename);
     virtual bool init();
