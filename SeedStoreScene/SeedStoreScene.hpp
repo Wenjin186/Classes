@@ -13,6 +13,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "cocostudio/WidgetCallBackHandlerProtocol.h"
+#include "Protagonist.hpp"
 
 USING_NS_CC;
 using namespace ui;
@@ -23,7 +24,7 @@ public:
     
     virtual bool init();
     
-    void onEnterTransitionDidFinish();
+    void onEnter();
     
     CREATE_FUNC(SeedStoreScene);
     
@@ -36,6 +37,13 @@ public:
     void Trade(Ref *sender);
     
     virtual void update(float delta);
+    
+private:
+    Protagonist *pro;
+    TMXTiledMap *map = nullptr;
+    TMXObjectGroup *group = nullptr;
+    ValueMap InsideDoorLeft;
+    void judgeLdoorCollision();
 };
 
 #endif /* SeedStoreScene_hpp */

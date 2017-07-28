@@ -70,6 +70,7 @@ void WholeFarmScene::onEnterTransitionDidFinish(){
     camera->setAnchorPoint(Vec2(0.5,0.5));
     camera->setPosition(pro->getPosition());
     
+    button_layer->setPosition(pro->getPosition());
 }
 
 Widget::ccWidgetClickCallback WholeFarmScene::onLocateClickCallback(const std::string &callBackName){

@@ -8,6 +8,7 @@
 
 #include "SeedStoreScene.hpp"
 #include "SeedStoreSceneReader.hpp"
+#include "WholeFarmScene.hpp"
 
 Scene *SeedStoreScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -23,8 +24,18 @@ bool SeedStoreScene::init(){
     return true;
 }
 
-void SeedStoreScene::onEnterTransitionDidFinish(){
-    Scene::onEnterTransitionDidFinish();
+void SeedStoreScene::onEnter(){
+    Scene::onEnter();
+    
+    map = (TMXTiledMap *)getChildByName("SeedStoreMap");
+    group = map->getObjectGroup("door");
+    InsideDoorLeft = group->getObject("Ldoor");
+    
+    Vec2 proPosi(InsideDoorLeft.at("x").asFloat()+InsideDoorLeft.at("width").asFloat()/2, InsideDoorLeft.at("y").asFloat());
+    pro = Protagonist::getInstance();
+    pro->setAnchorPoint(Vec2(0.5, 0));
+    pro->setPosition(proPosi);
+    addChild(pro);
 }
 
 Widget::ccWidgetClickCallback SeedStoreScene::onLocateClickCallback(const std::string &callBackName){
@@ -52,7 +63,20 @@ void SeedStoreScene::Trade(cocos2d::Ref *sender){
 }
 
 void SeedStoreScene::update(float delta){
-    
+    judgeLdoorCollision();
+}
+
+void SeedStoreScene::judgeLdoorCollision(){
+    Vec2 proPosi = map->convertToNodeSpace(pro->getPosition());
+    //CCLOG("%f", proPosi.x);
+    if ( ( proPosi.x > InsideDoorLeft.at("x").asFloat()  && proPosi.x < (InsideDoorLeft.at("x").asFloat()+ InsideDoorLeft.at("width").asFloat()) )
+        
+        &&  ( proPosi.y < InsideDoorLeft.at("y").asFloat()  )
+        
+        ) {
+        auto director = Director::getInstance();
+        director->replaceScene(WholeFarmScene::createScene());
+    }
 }
 
 
