@@ -180,7 +180,7 @@ void Protagonist::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *
 }
 
 void Protagonist::update(float delta){
-    int speed = 3;
+    int speed = 6;
     if (rightMove==true) {
         face = "right";
         setPosition(getPosition()+Vec2(speed, 0));
