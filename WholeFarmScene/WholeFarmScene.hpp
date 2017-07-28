@@ -49,9 +49,16 @@ private:
     EventListenerKeyboard *keyListener = nullptr;
     TMXTiledMap *map = nullptr;
     TMXObjectGroup *group = nullptr;
+    
     ValueMap niupengDoor;
+    ValueMap seedStoreDoor;
+    
     Camera *camera = nullptr;
     Layer *button_layer = nullptr;
+    void judgeNiuPengDoorCollision();
+    void repositionCamera();
+    void repositionButtonLayer();
+    void judgeSeedStoreDoorCollision();
 };
 
 #endif /* GameUiScene_hpp */

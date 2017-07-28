@@ -14,6 +14,7 @@
 #include "HistoryUtil.hpp"
 #include "MxzyStorage.hpp"
 #include "SeedSeller.hpp"
+#include "SeedStoreScene.hpp"
 
 Scene *WholeFarmScene::createScene(){
     CSLoader *loader = CSLoader::getInstance();
@@ -37,6 +38,7 @@ void WholeFarmScene::onEnter(){
     map = (TMXTiledMap *)getChildByName("WholeFarmMap");
     group = map->getObjectGroup("door");
     niupengDoor = group->getObject("niupengDoor");
+    seedStoreDoor = group->getObject("SeedStoreDoor");
     
     button_layer = getChildByName<Layer *>("ButtonLayer");
     button_layer->setAnchorPoint(Vec2(0.5,0.5));
@@ -105,6 +107,13 @@ void WholeFarmScene::Trade(cocos2d::Ref *sender){
 
 void WholeFarmScene::update(float delta){
    // CCLOG("hello world!!");
+    judgeNiuPengDoorCollision();
+    judgeSeedStoreDoorCollision();
+    repositionCamera();
+    repositionButtonLayer();
+}
+
+void WholeFarmScene::judgeNiuPengDoorCollision(){
     //如果主角和牛棚门碰撞
     Vec2 proPosi = map->convertToNodeSpace(pro->getPosition());
     //CCLOG("%f", proPosi.x);
@@ -117,8 +126,28 @@ void WholeFarmScene::update(float delta){
         director->replaceScene(NiuPengScene::createScene());
     }
     
+}
+
+void WholeFarmScene::judgeSeedStoreDoorCollision(){
+    Vec2 proPosi = map->convertToNodeSpace(pro->getPosition());
+    if ( ( proPosi.x > seedStoreDoor.at("x").asFloat()  && proPosi.x < (seedStoreDoor.at("x").asFloat()+ seedStoreDoor.at("width").asFloat()) )
+        
+        &&  ( proPosi.y > seedStoreDoor.at("y").asFloat() && proPosi.y < (seedStoreDoor.at("y").asFloat() + seedStoreDoor.at("height").asFloat())  )
+        
+        ){
+        
+        auto director = Director::getInstance();
+        director->replaceScene(SeedStoreScene::createScene());
+        
+    }
+}
+
+void WholeFarmScene::repositionCamera(){
     camera->setPosition(pro->getPosition());
-    button_layer->setPosition(pro->getPosition());
+}
+
+void WholeFarmScene::repositionButtonLayer(){
+     button_layer->setPosition(pro->getPosition());
 }
 
 //测试方法
