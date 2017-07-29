@@ -14,6 +14,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "cocostudio/WidgetCallBackHandlerProtocol.h"
 #include "Protagonist.hpp"
+#include "SeedSeller.hpp"
 
 USING_NS_CC;
 using namespace ui;
@@ -39,11 +40,16 @@ public:
     virtual void update(float delta);
     
 private:
+    SeedSeller *seller = nullptr;
     Protagonist *pro;
     TMXTiledMap *map = nullptr;
     TMXObjectGroup *group = nullptr;
     ValueMap InsideDoorLeft;
+    ValueMap table1;
     void judgeLdoorCollision();
+    void judgeTable1Collision();
+    
+    
 };
 
 #endif /* SeedStoreScene_hpp */

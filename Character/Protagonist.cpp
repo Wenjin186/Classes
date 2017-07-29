@@ -161,6 +161,9 @@ void Protagonist::onKeyPressed(EventKeyboard::KeyCode keyCode, cocos2d::Event *e
         downMove = true;
         upMove = false;
     }
+    else if(keyCode==EventKeyboard::KeyCode::KEY_E){
+        CCLOG("e");
+    }
 }
 
 void Protagonist::onKeyReleased(EventKeyboard::KeyCode keyCode, cocos2d::Event *event){

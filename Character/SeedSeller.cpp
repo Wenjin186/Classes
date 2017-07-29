@@ -41,6 +41,8 @@ SeedSeller *SeedSeller::create(const string &filename){
 SeedSeller *SeedSeller::getInstance(){
     SeedSeller *seller = SeedSeller::create();
     
+    seller->setTexture("character/guy-1/1F1.png");
+    
     auto animation = Animation::create();
     animation->addSpriteFrameWithFile("character/guy-1/1R1.png");
     animation->addSpriteFrameWithFile("character/guy-1/1R2.png");
@@ -54,8 +56,8 @@ SeedSeller *SeedSeller::getInstance(){
     auto repeatanimate = RepeatForever::create(animate);
     auto moveTo = MoveTo::create(10.f, seller->getPosition()+Vec2(1024, 0));
     
-    seller->runAction(repeatanimate);
-    seller->runAction(moveTo);
+    //seller->runAction(repeatanimate);
+    //seller->runAction(moveTo);
     
     return seller;
 }
