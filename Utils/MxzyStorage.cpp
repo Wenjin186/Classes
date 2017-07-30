@@ -90,6 +90,12 @@ ProtagonistData *MxzyStorage::getProtagonistDataById(int id){
     return _data;
 }
 
+GlobalInfoData *MxzyStorage::getGlobalInfoData(){
+    _globalData = new GlobalInfoData(info);
+    
+    return _globalData;
+}
+
 int MxzyStorage::writeGlobalInfo(){
     int ret = createOrGetGlobalInfoFile(&fp_global, ".global.bin");
     if (ret == ERROR) {

@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "ProtagonistData.hpp"
+#include "GlobalInfoData.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -36,6 +37,7 @@ public:
     // ProtagonistData *pro_data = storage->getProtagonistDataById(storage->getCurrentProId());来返回一个对象专门操作和当前角色有关的数据
     int createNewProtagonist(); //创建一个角色，成功返回创建角色的ID，失败返回ERROR
     ProtagonistData *getProtagonistDataById(int id); //获得指定角色ID的数据
+    GlobalInfoData *getGlobalInfoData(); //获得全局信息数据
     void setCurrentProId(int id); //设置当前角色ID
     int getCurrentProId(); //获得当前角色ID
 
@@ -49,6 +51,7 @@ private:
     
     static MxzyStorage *_storage;
     ProtagonistData *_data;
+    GlobalInfoData *_globalData;
     FILE *fp_global;
     GlobalInfo *info;
     int current_id;
