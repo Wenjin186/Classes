@@ -85,7 +85,7 @@ ProtagonistData *MxzyStorage::getProtagonistDataById(int id){
         CCLOG("没有该角色的任何信息");
         return nullptr;
     }
-    _data = new ProtagonistData(crow, info);
+    _data = new ProtagonistData(crow);
     
     return _data;
 }

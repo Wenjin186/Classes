@@ -37,15 +37,15 @@ GoodsBag *ProtagonistData::getGoodsBag(){
     int level = crow->bag.bag_level;
     int amount = 0;
     
-    MxzyStorage::getInstance()->getGlobalInfoData()->
-    
-    for (int i = 0; i < GOODSBAGINFO_MAX; i++) {
-        if (level == info->goodsbag_info.levels[i].bag_level ){
-            amount = info->goodsbag_info.levels[i].bag_capacity;
-            break;
-        }
-    }
-    
+//    MxzyStorage::getInstance()->getGlobalInfoData()->
+//    
+//    for (int i = 0; i < GOODSBAGINFO_MAX; i++) {
+//        if (level == info->goodsbag_info.levels[i].bag_level ){
+//            amount = info->goodsbag_info.levels[i].bag_capacity;
+//            break;
+//        }
+//    }
+//    
     
     bag = new GoodsBag(level, amount);
     return bag;

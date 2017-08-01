@@ -7,3 +7,7 @@
 //
 
 #include "CppGbLevel.hpp"
+
+CppGbLevel::CppGbLevel(int level, int capacity){
+    
+}

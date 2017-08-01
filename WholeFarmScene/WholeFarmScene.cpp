@@ -44,10 +44,10 @@ void WholeFarmScene::onEnter(){
     button_layer->setAnchorPoint(Vec2(0.5,0.5));
     
     //测试一下数据库
-    ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
-    GoodsBag *bag = data->getGoodsBag();
-    CCLOG("bag level = %d", bag->getCurrentLevel());
-    CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
+//    ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
+//    GoodsBag *bag = data->getGoodsBag();
+//    CCLOG("bag level = %d", bag->getCurrentLevel());
+//    CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
 }
 
 void WholeFarmScene::onEnterTransitionDidFinish(){

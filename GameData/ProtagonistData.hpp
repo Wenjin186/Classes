@@ -11,7 +11,6 @@
 
 #include "cocos2d.h"
 #include "GoodsBag.hpp"
-#include "MxzyStorage.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
