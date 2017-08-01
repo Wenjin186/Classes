@@ -9,6 +9,16 @@
 #ifndef CppGoodsBagInfo_hpp
 #define CppGoodsBagInfo_hpp
 
-#include <stdio.h>
+#include "CppGbLevel.hpp"
+
+using namespace std;
+
+class CppGoodsBagInfo{
+public:
+    CppGoodsBagInfo(vector<CppGbLevel *> gbVector);
+    vector<CppGbLevel *> &getLevelInfo();
+private:
+    vector<CppGbLevel *> gbVector;
+};
 
 #endif /* CppGoodsBagInfo_hpp */

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "GoodsBag.hpp"
+#include "CppGoodsBagInfo.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -24,11 +25,11 @@ public:
     GlobalInfoData(GlobalInfo *info);
     ~GlobalInfoData();
     //GoodsInfo *getGoodsInfoById(int id);
-
+    CppGoodsBagInfo *getCppGoodsBagInfo();
 private:
     string name;
     GlobalInfo *info;
-    
+    CppGoodsBagInfo *goodsBagInfo = nullptr;
  //   vector<object>
 };
 

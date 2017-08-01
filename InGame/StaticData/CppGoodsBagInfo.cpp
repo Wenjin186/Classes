@@ -7,3 +7,11 @@
 //
 
 #include "CppGoodsBagInfo.hpp"
+
+CppGoodsBagInfo::CppGoodsBagInfo(vector<CppGbLevel *> gbVector){
+    this->gbVector = gbVector;
+}
+
+vector<CppGbLevel *> &CppGoodsBagInfo::getLevelInfo(){
+    return gbVector;
+}
