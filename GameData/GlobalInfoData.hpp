@@ -30,6 +30,7 @@ private:
     string name;
     GlobalInfo *info;
     CppGoodsBagInfo *goodsBagInfo = nullptr;
+    vector<CppGbLevel *> gbVector;
  //   vector<object>
 };
 
