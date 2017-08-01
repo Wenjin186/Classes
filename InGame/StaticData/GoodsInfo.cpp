@@ -42,5 +42,35 @@ double GoodsInfo::getPurchasePrice(){
 }
 
 void GoodsInfo::setSellPrice(double sellPrice){
-    
+    goodsDetail->sell_price = sellPrice;
 }
+
+double GoodsInfo::getSellPrice(){
+    return goodsDetail->sell_price;
+}
+
+void GoodsInfo::setGoodsType(int goodsType){
+    goodsDetail->goods_type = goodsType;
+}
+
+int GoodsInfo::getGoodsType(){
+    return goodsDetail->goods_type;
+}
+
+void GoodsInfo::setGoodsMax(int goodsMax){
+    goodsDetail->goods_max = goodsMax;
+}
+
+int GoodsInfo::getGoodsMax(){
+    return goodsDetail->goods_max;
+}
+
+
+
+
+
+
+
+
+
+

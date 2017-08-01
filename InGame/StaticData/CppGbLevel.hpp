@@ -12,6 +12,14 @@
 class CppGbLevel{
 public:
     CppGbLevel(int level, int capacity);
+    ~CppGbLevel();
+    
+    void setLevel(int level);
+    int getLevel();
+    
+    void setCapacity(int capacity);
+    int getCapacity();
+    
 private:
     int level = 0;
     int capacity = 0;
