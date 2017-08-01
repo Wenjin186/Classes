@@ -8,8 +8,8 @@
 
 #include "GoodsInfo.hpp"
 
-GoodsInfo::GoodsInfo(GoodsDetail *goodsDetil){
-    this->goodsDetail = goodsDetil;
+GoodsInfo::GoodsInfo(GoodsDetail *goodsDetail){
+    this->goodsDetail = goodsDetail;
 }
 
 GoodsInfo::~GoodsInfo(){
@@ -23,4 +23,24 @@ void GoodsInfo::setGoodsName(string &goodsName){
 string &GoodsInfo::getGoodsName(){
     goodsName = string(goodsDetail->goods_name);
     return goodsName;
+}
+
+void GoodsInfo::setGoodsId(int goodsId){
+    goodsDetail->goods_id = goodsId;
+}
+
+int GoodsInfo::getGoodsId(){
+    return goodsDetail->goods_id;
+}
+
+void GoodsInfo::setPurchasePrice(double purchasePrice){
+    goodsDetail->purchase_price = purchasePrice;
+}
+
+double GoodsInfo::getPurchasePrice(){
+    return goodsDetail->purchase_price;
+}
+
+void GoodsInfo::setSellPrice(double sellPrice){
+    
 }

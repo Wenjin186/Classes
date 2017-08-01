@@ -10,6 +10,7 @@
 
 GlobalInfoData::GlobalInfoData(GlobalInfo *info){
     this->info = info;
+    
 }
 
 GlobalInfoData::~GlobalInfoData(){
