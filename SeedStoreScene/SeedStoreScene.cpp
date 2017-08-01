@@ -31,7 +31,7 @@ void SeedStoreScene::onEnter(){
     map = (TMXTiledMap *)getChildByName("SeedStoreMap");
     group = map->getObjectGroup("door");
     InsideDoorLeft = group->getObject("Ldoor");
-    table1 = group->getObject("table1");
+    //table1 = group->getObject("table1");
     
     Vec2 proPosi(InsideDoorLeft.at("x").asFloat()+InsideDoorLeft.at("width").asFloat()/2, InsideDoorLeft.at("y").asFloat());
     pro = Protagonist::getInstance();
@@ -77,7 +77,7 @@ void SeedStoreScene::Trade(cocos2d::Ref *sender){
 
 void SeedStoreScene::update(float delta){
     judgeLdoorCollision();
-    judgeTable1Collision();
+    //judgeTable1Collision();
 }
 
 void SeedStoreScene::judgeLdoorCollision(){
