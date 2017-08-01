@@ -13,6 +13,8 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
 }
 
 GlobalInfoData::~GlobalInfoData(){
-    CC_SAFE_DELETE();
+    //CC_SAFE_DELETE();
 }
+
+
 
