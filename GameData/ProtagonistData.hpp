@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "GoodsBag.hpp"
+#include "MxzyStorage.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -20,7 +21,7 @@ using namespace std;
 
 class ProtagonistData{
 public:
-    ProtagonistData(CharacterRow *crow, GlobalInfo *info);
+    ProtagonistData(CharacterRow *crow);
     ~ProtagonistData();
     void setId(int id);
     int getId();
@@ -31,7 +32,6 @@ public:
 private:
     string name;
     CharacterRow *crow;
-    GlobalInfo *info;
     GoodsBag *bag;
 };
 
