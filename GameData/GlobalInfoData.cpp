@@ -18,7 +18,7 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
     }
     
     for(int i=0; i< ALLGOODSINFO_MAX; i++){
-        goodsInfoVector.push_back(new GoodsInfo(info->allgoods_info.detail));
+        goodsInfoVector.push_back(new GoodsInfo(&info->allgoods_info.detail[i]));
     }
     
 }

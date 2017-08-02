@@ -39,17 +39,23 @@ public:
     
     virtual void update(float delta);
     
+    void initAllObjects();
+    void setProtagonist();
+    void setOtherCharacter();
+    void setSeedOnTable();
+    
 private:
     SeedSeller *seller = nullptr;
     Protagonist *pro;
     TMXTiledMap *map = nullptr;
     TMXObjectGroup *group = nullptr;
     ValueMap InsideDoorLeft;
-    ValueMap table1;
+    ValueMap seedTable1;
+    ValueMap seedTable2;
+    ValueMap seedTable3;
+    ValueMap seedTable4;
     void judgeLdoorCollision();
     void judgeTable1Collision();
-    
-    
 };
 
 #endif /* SeedStoreScene_hpp */
