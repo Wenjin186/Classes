@@ -18,9 +18,9 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
     }
     
     for(int i=0; i< ALLGOODSINFO_MAX; i++){
-        goodsInfoVector.push_back(new GoodsInfo(info->allgoods_info.detail));
+        goodsInfoVector.push_back(new GoodsInfo(&info->allgoods_info.detail[i]));
     }
-    
+    allGoodsInfo = new CppAllGoodsInfo(goodsInfoVector);
 }
 
 GlobalInfoData::~GlobalInfoData(){
@@ -29,6 +29,7 @@ GlobalInfoData::~GlobalInfoData(){
         auto level = gbVector.at(i);
         CC_SAFE_DELETE(level);
     }
+    CC_SAFE_DELETE(allGoodsInfo);
 }
 
 CppGoodsBagInfo *GlobalInfoData::getCppGoodsBagInfo(){
@@ -45,9 +46,7 @@ CppGoodsBagInfo *GlobalInfoData::getCppGoodsBagInfo(){
 }
 
 CppAllGoodsInfo *GlobalInfoData::getCppAllGoodsInfo(){
-    allGoodsInfo = new CppAllGoodsInfo(goodsInfoVector);
     return allGoodsInfo;
-    
 }
 
 
