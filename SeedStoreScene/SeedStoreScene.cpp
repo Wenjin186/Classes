@@ -68,6 +68,7 @@ void SeedStoreScene::onEnter(){
     setSeedOnTable();
 }
 
+
 Widget::ccWidgetClickCallback SeedStoreScene::onLocateClickCallback(const std::string &callBackName){
     
     if (callBackName=="Settings") {
