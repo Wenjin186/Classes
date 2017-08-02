@@ -17,6 +17,10 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
         gbVector.push_back(new CppGbLevel(0, 0));
     }
     
+    for(int i=0; i< ALLGOODSINFO_MAX; i++){
+        goodsInfoVector.push_back(new GoodsInfo(info->allgoods_info.detail));
+    }
+    
 }
 
 GlobalInfoData::~GlobalInfoData(){
@@ -41,11 +45,6 @@ CppGoodsBagInfo *GlobalInfoData::getCppGoodsBagInfo(){
 }
 
 CppAllGoodsInfo *GlobalInfoData::getCppAllGoodsInfo(){
-    
-    for(int i=0; i< ALLGOODSINFO_MAX; i++){
-        goodsInfoVector.push_back(new GoodsInfo(info->allgoods_info.detail));
-    }
-    
     allGoodsInfo = new CppAllGoodsInfo(goodsInfoVector);
     return allGoodsInfo;
     
