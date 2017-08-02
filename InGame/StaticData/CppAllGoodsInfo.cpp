@@ -15,3 +15,7 @@ CppAllGoodsInfo::CppAllGoodsInfo(vector<GoodsInfo *> goodsInfoVector){
 vector<GoodsInfo *> &CppAllGoodsInfo::getAllGoodsInfo(){
     return goodsInfoVector;
 }
+
+GoodsInfo *CppAllGoodsInfo::getGoodsInfoById(int id){
+    return goodsInfoVector.at(id);
+}
