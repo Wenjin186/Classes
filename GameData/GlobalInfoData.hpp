@@ -13,6 +13,7 @@
 #include "cocos2d.h"
 #include "GoodsBag.hpp"
 #include "CppGoodsBagInfo.hpp"
+#include "CppAllGoodsInfo.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -26,11 +27,14 @@ public:
     ~GlobalInfoData();
     //GoodsInfo *getGoodsInfoById(int id);
     CppGoodsBagInfo *getCppGoodsBagInfo();
+    CppAllGoodsInfo *getCppAllGoodsInfo();
 private:
     string name;
     GlobalInfo *info;
     CppGoodsBagInfo *goodsBagInfo = nullptr;
     vector<CppGbLevel *> gbVector;
+    vector<GoodsInfo *> goodsInfoVector;
+    CppAllGoodsInfo *allGoodsInfo = nullptr;
  //   vector<object>
 };
 
