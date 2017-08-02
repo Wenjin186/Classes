@@ -17,5 +17,10 @@ vector<GoodsInfo *> &CppAllGoodsInfo::getAllGoodsInfo(){
 }
 
 GoodsInfo *CppAllGoodsInfo::getGoodsInfoById(int id){
-    return goodsInfoVector.at(id);
+    for (int i = 0; i < ALLGOODSINFO_MAX; i++) {
+        auto gi = goodsInfoVector.at(i);
+        if (gi->getGoodsId() == id)
+            return gi;
+    }
+    return nullptr;
 }

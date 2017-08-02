@@ -29,14 +29,9 @@ bool WholeFarmScene::init(){
         return false;
     }
     
-// 测试数据库
-    GlobalInfoData *data = MxzyStorage::getInstance()->getGlobalInfoData();
-    CppAllGoodsInfo *allGoodsInfo = data->getCppAllGoodsInfo();
-//    vector<GoodsInfo *> goodsInfoVector = allGoodsInfo->getAllGoodsInfo();
-//    CCLOG("goods one = %s", goodsInfoVector.at(5)->getGoodsName().c_str());
+    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppAllGoodsInfo()->getGoodsInfoById(301);
+    CCLOG("%s", test->getGoodsName().c_str());
     
-    GoodsInfo *goodsInfo = allGoodsInfo->getGoodsInfoById(1);
-    CCLOG("goods one = %s", goodsInfo->getGoodsName().c_str());
     return true;
 }
 
