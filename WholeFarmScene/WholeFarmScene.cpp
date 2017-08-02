@@ -28,9 +28,13 @@ bool WholeFarmScene::init(){
     if (!Scene::init()) {
         return false;
     }
+//  测试GoodsInfo
+//    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppAllGoodsInfo()->getGoodsInfoById(301);
+//    CCLOG("%s", test->getGoodsName().c_str());
     
-    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppAllGoodsInfo()->getGoodsInfoById(301);
-    CCLOG("%s", test->getGoodsName().c_str());
+// 测试GoodsBagInfo
+//    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoById(1);
+//    CCLOG("Goods bag level: %d", test->getLevel());
     
     return true;
 }

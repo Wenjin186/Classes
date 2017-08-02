@@ -9,6 +9,12 @@
 #ifndef CppGbLevel_hpp
 #define CppGbLevel_hpp
 
+using namespace std;
+
+extern "C"{
+#include "MxzyDatabase.h"
+}
+
 class CppGbLevel{
 public:
     CppGbLevel(int level, int capacity);

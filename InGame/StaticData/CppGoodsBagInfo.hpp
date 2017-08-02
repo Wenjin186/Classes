@@ -17,6 +17,7 @@ class CppGoodsBagInfo{
 public:
     CppGoodsBagInfo(vector<CppGbLevel *> gbVector);
     vector<CppGbLevel *> &getLevelInfo();
+    CppGbLevel *getLevelInfoById(int id);
 private:
     vector<CppGbLevel *> gbVector;
 };
