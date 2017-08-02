@@ -29,6 +29,12 @@ bool WholeFarmScene::init(){
         return false;
     }
     
+// 测试数据库
+//    GlobalInfoData *data = MxzyStorage::getInstance()->getGlobalInfoData();
+//    CppAllGoodsInfo *allGoodsInfo = data->getCppAllGoodsInfo();
+//    vector<GoodsInfo *> goodsInfoVector = allGoodsInfo->getAllGoodsInfo();
+//    CCLOG("goods one = %s", goodsInfoVector.at(5)->getGoodsName().c_str());
+    
     return true;
 }
 
@@ -44,10 +50,10 @@ void WholeFarmScene::onEnter(){
     button_layer->setAnchorPoint(Vec2(0.5,0.5));
     
     //测试一下数据库
-//    ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
-//    GoodsBag *bag = data->getGoodsBag();
-//    CCLOG("bag level = %d", bag->getCurrentLevel());
-//    CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
+    ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
+    GoodsBag *bag = data->getGoodsBag();
+    CCLOG("bag level = %d", bag->getCurrentLevel());
+    CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
 }
 
 void WholeFarmScene::onEnterTransitionDidFinish(){
