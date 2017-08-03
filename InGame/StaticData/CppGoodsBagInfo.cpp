@@ -29,3 +29,8 @@ CppGbLevel *CppGoodsBagInfo::getLevelInfoByLevel(int level){
     }
     return nullptr;
 }
+
+int CppGoodsBagInfo::getCapacityMax(){
+    capacityMax = GOODSBAG_CAPACITY_MAX;
+    return capacityMax;
+}
