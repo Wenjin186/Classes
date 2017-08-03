@@ -12,6 +12,10 @@ CppGoodsBagInfo::CppGoodsBagInfo(vector<CppGbLevel *> gbVector){
     this->gbVector = gbVector;
 }
 
+CppGoodsBagInfo::~CppGoodsBagInfo(){
+
+}
+
 vector<CppGbLevel *> &CppGoodsBagInfo::getLevelInfo(){
     return gbVector;
 }

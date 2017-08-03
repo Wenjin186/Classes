@@ -65,8 +65,10 @@ int GoodsInfo::getGoodsMax(){
     return goodsDetail->goods_max;
 }
 
-
-
+string &GoodsInfo::getImagePass(){
+    imagePath = string(goodsDetail->image_path);
+    return imagePath;
+}
 
 
 

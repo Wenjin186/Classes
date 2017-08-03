@@ -39,12 +39,15 @@ public:
     
     void setGoodsMax(int goodsMax);
     int getGoodsMax();
+    
+    string &getImagePass();
 private:
     GoodsDetail *goodsDetail;
     string goodsName;
     int goodsId;
     double purchasePrice;
     double sellPrice;
+    string imagePath;
 };
 
 #endif /* GoodsInfo_hpp */

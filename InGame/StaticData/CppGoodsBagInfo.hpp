@@ -16,6 +16,7 @@ using namespace std;
 class CppGoodsBagInfo{
 public:
     CppGoodsBagInfo(vector<CppGbLevel *> gbVector);
+    ~CppGoodsBagInfo();
     vector<CppGbLevel *> &getLevelInfo();
     CppGbLevel *getLevelInfoByLevel(int level);
 private:
