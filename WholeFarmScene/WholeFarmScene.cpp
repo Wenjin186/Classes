@@ -35,6 +35,16 @@ bool WholeFarmScene::init(){
 // 测试GoodsBagInfo
 //    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoById(1);
 //    CCLOG("Goods bag level: %d", test->getLevel());
+    //int id = MxzyStorage::getInstance()->getCurrentProId();
+    //auto test = MxzyStorage::getInstance()->getProtagonistDataById(id);
+    
+    auto test = MxzyStorage::getInstance()->getProtagonistDataById(MxzyStorage::getInstance()->getCurrentProId());
+    CCLOG("%s", test->getName().c_str());
+    
+    //auto test2 = MxzyStorage::getInstance()->getProtagonistDataById(2);
+    
+    
+    
     
     return true;
 }

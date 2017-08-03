@@ -10,6 +10,7 @@
 #define MxzyStorage_hpp
 
 #include "cocos2d.h"
+
 #include "ProtagonistData.hpp"
 #include "GlobalInfoData.hpp"
 
@@ -19,6 +20,8 @@ extern "C"{
 
 USING_NS_CC;
 using namespace std;
+
+class ProtagonistData;
 
 class MxzyStorage{
 public:
@@ -50,11 +53,29 @@ private:
     int gameOver(); //该方法在本类的析构函数中被调用，释放所有资源
     
     static MxzyStorage *_storage;
-    ProtagonistData *_data;
-    GlobalInfoData *_globalData;
+    static ProtagonistData *_data;
+    static GlobalInfoData *_globalData;
     FILE *fp_global;
     GlobalInfo *info;
     int current_id;
+};
+
+class ProtagonistData{
+public:
+    ProtagonistData(CharacterRow *crow);
+    ~ProtagonistData();
+    void setId(int id);
+    int getId();
+    
+    void initWithGoodsBag();
+    
+    void setName(string &name);
+    string &getName();
+    GoodsBag *getGoodsBag();
+private:
+    string name;
+    CharacterRow *crow;
+    GoodsBag *bag;
 };
 
 #endif /* MxzyStorage_hpp */

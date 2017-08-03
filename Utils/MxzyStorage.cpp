@@ -9,6 +9,9 @@
 #include "MxzyStorage.hpp"
 
 MxzyStorage *MxzyStorage::_storage = nullptr;
+ProtagonistData *MxzyStorage::_data = nullptr;
+GlobalInfoData *MxzyStorage::_globalData = nullptr;
+
 
 MxzyStorage::~MxzyStorage(){
     gameOver();
@@ -25,7 +28,7 @@ MxzyStorage *MxzyStorage::getInstance(){
 }
 
 void MxzyStorage::purge(){
-    CC_SAFE_FREE(MxzyStorage::_storage);
+    CC_SAFE_DELETE(MxzyStorage::_storage);
 }
 
 FILE *MxzyStorage::getFilePointer(){
@@ -53,12 +56,13 @@ int MxzyStorage::gameStart(){
 }
 
 int MxzyStorage::gameOver(){
-    toWriteData(fp, table);
-    freeCharacterTable(table);
-    closeLocalStorage(fp);
-    freeGlobalInfo(info);
+    toWriteData(fp, table); //把活数据写入文件
+    freeCharacterTable(table); //释放charactertable
+    closeLocalStorage(fp); //关闭文件流
+    freeGlobalInfo(info); //释放全局数据
     
     CC_SAFE_DELETE(_data);
+    CC_SAFE_DELETE(_globalData);
     return SUCCESS;
 }
 
@@ -85,15 +89,25 @@ ProtagonistData *MxzyStorage::getProtagonistDataById(int id){
         CCLOG("没有该角色的任何信息");
         return nullptr;
     }
-    _data = new ProtagonistData(crow);
     
-    return _data;
+    if (_data == nullptr) {
+        _data = new ProtagonistData(crow);
+        return _data;
+    }else if (_data->getId() == id){
+        return _data;
+    }else{
+        CC_SAFE_DELETE(_data);
+        _data = new ProtagonistData(crow);
+        return _data;
+    }
 }
 
 GlobalInfoData *MxzyStorage::getGlobalInfoData(){
-    _globalData = new GlobalInfoData(info);
-    
-    return _globalData;
+    if (_globalData==nullptr) {
+        _globalData = new GlobalInfoData(info);
+        return _globalData;
+    }
+    return nullptr;
 }
 
 int MxzyStorage::writeGlobalInfo(){
