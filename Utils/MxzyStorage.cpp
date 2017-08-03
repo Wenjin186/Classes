@@ -61,8 +61,12 @@ int MxzyStorage::gameOver(){
     closeLocalStorage(fp); //关闭文件流
     freeGlobalInfo(info); //释放全局数据
     
-    CC_SAFE_DELETE(_data);
-    CC_SAFE_DELETE(_globalData);
+    if (_data != nullptr)
+        CC_SAFE_DELETE(_data);
+    
+    if (_globalData != nullptr) 
+        CC_SAFE_DELETE(_globalData);
+    
     return SUCCESS;
 }
 

@@ -21,7 +21,7 @@ void ProtagonistData::initWithGoodsBag(){
     auto storage = MxzyStorage::getInstance();
     int level = crow->bag.bag_level;
     
-    bag = new GoodsBag(level, storage->getGlobalInfoData()->getCppGoodsBagInfo()->get);
+    bag = new GoodsBag(level, storage->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(level)->getCapacity());
 }
 
 void ProtagonistData::setId(int id){
