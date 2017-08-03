@@ -19,8 +19,10 @@ public:
     ~CppGoodsBagInfo();
     vector<CppGbLevel *> &getLevelInfo();
     CppGbLevel *getLevelInfoByLevel(int level);
+    int getCapacityMax();
 private:
     vector<CppGbLevel *> gbVector;
+    int capacityMax;
 };
 
 #endif /* CppGoodsBagInfo_hpp */
