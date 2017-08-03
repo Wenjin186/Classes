@@ -14,6 +14,7 @@
 class CppAllGoodsInfo{
 public:
     CppAllGoodsInfo(vector<GoodsInfo *> goodsInfoVector);
+    ~CppAllGoodsInfo();
     vector<GoodsInfo *> &getAllGoodsInfo();
     GoodsInfo *getGoodsInfoById(int id);
 private:

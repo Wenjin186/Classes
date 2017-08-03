@@ -12,6 +12,10 @@ CppAllGoodsInfo::CppAllGoodsInfo(vector<GoodsInfo *> goodsInfoVector){
     this->goodsInfoVector = goodsInfoVector;
 }
 
+CppAllGoodsInfo::~CppAllGoodsInfo(){
+    
+}
+
 vector<GoodsInfo *> &CppAllGoodsInfo::getAllGoodsInfo(){
     return goodsInfoVector;
 }
