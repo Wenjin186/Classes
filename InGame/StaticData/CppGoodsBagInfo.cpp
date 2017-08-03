@@ -16,10 +16,10 @@ vector<CppGbLevel *> &CppGoodsBagInfo::getLevelInfo(){
     return gbVector;
 }
 
-CppGbLevel *CppGoodsBagInfo::getLevelInfoById(int id){
+CppGbLevel *CppGoodsBagInfo::getLevelInfoByLevel(int level){
     for(int i = 0; i < GOODSBAGINFO_MAX ; i++){
         auto li = gbVector.at(i);
-        if(li->getLevel() == id){
+        if(li->getLevel() == level){
             return li;
         }
     }

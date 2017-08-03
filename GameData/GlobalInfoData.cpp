@@ -14,7 +14,7 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
     this->info = info;
     
     for (int i = 0; i < GOODSBAGINFO_MAX; i++) {
-        gbVector.push_back(new CppGbLevel(0, 0));
+        gbVector.push_back(new CppGbLevel(i, 0));
     }
     
     for(int i=0; i< ALLGOODSINFO_MAX; i++){
