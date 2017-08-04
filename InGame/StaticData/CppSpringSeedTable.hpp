@@ -21,7 +21,7 @@ public:
     CppSpringSeedTable(vector<CppSeed *> seedVector);
     ~CppSpringSeedTable();
     vector<CppSeed *> &getSeedTable();
-    
+    CppSeed *getSeedInfoById(int id);
 private:
     vector<CppSeed *> seedVector;
 };

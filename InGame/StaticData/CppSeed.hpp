@@ -66,6 +66,9 @@ public:
 private:
     Seed *seed;
     string seedstagePicpath;
+    string stage1Picpath;
+    string stage2Picpath;
+    string stage3Picpath;
     
 };
 

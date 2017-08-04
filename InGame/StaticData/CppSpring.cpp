@@ -10,8 +10,17 @@
 
 CppSpring::CppSpring(Spring *spr){
     this->spr = spr;
+    
+    for(int i = 0; i < SPRINGSEEDTABLE_MAX; i++){
+        //seedVector.push_back();
+    }
+    
 }
 
 CppSpring::~CppSpring(){
 
+}
+
+CppSpringSeedTable *CppSpring::getCppSpringSeedTable(){
+    return springSeedTable;
 }
