@@ -111,7 +111,7 @@ GlobalInfoData *MxzyStorage::getGlobalInfoData(){
         _globalData = new GlobalInfoData(info);
         return _globalData;
     }
-    return nullptr;
+    return _globalData;
 }
 
 int MxzyStorage::writeGlobalInfo(){

@@ -32,7 +32,7 @@ public:
 private:
     int current_level;
     int capacity;
-    std::vector<Goods> goods_vec;
+    std::vector<Goods *> goods_vec;
 };
 
 #endif /* GoodsBag_hpp */

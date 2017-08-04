@@ -12,18 +12,24 @@
 GoodsBag::GoodsBag(int current_level, int goodsbag_max){
     this->current_level = current_level;
     this->capacity = goodsbag_max;
-    
+    int bag_max = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getCapacityMax();
+    CCLOG("Bag_max = %d", bag_max);
+    //initWithGoodsVec();
 }
 
 GoodsBag::~GoodsBag(){
-    CC_SAFE_DELETE_ARRAY(goods_vec);
+//    int bag_max = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getCapacityMax();
+//    for (int i = 0 ; i < bag_max; i++) {
+//        CC_SAFE_DELETE(goods_vec.at(i));
+//    }
 }
 
 void GoodsBag::initWithGoodsVec(){
-    int bag_max = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->get
-    for (int i = 0; int i < ; <#increment#>) {
-        <#statements#>
-    }
+    MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getCapacityMax();
+    //CCLOG("Bag_max = %d", bag_max);
+//    for (int i = 0; i < bag_max; i++ ) {
+//        goods_vec.push_back(new Goods(0,0,0));
+//    }
 }
 
 void GoodsBag::setCurrentLevel(int current_level){

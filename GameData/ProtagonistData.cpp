@@ -8,6 +8,8 @@
 
 #include "MxzyStorage.hpp"
 
+//不需要考虑crow指向的是谁
+
 ProtagonistData::ProtagonistData(CharacterRow *crow){
     this->crow = crow;
     initWithGoodsBag();
