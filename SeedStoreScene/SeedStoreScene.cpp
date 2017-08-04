@@ -22,6 +22,12 @@ bool SeedStoreScene::init(){
     if (!Scene::init()) {
         return false;
     }
+    
+    //测试数据库
+    auto testDb = MxzyStorage::getInstance()->getGlobalInfoData()->getCppSpring()->getCppSpringSeedTable();
+    CCLOG("seed id: %s", testDb->getSeedInfoById(101)->getSeedName().c_str());
+    
+    
     return true;
 }
 

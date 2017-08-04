@@ -24,6 +24,14 @@ int CppSeed::getSeedId(){
     return seed->seed_id;
 }
 
+void CppSeed::setSeedName(string &seedName){
+    strcpy(seed->seed_name,seedName.c_str());
+}
+
+string &CppSeed::getSeedName(){
+    return seedName;
+}
+
 void CppSeed::setSeedstageDays(int seedstageDays){
     seed->seedstage_days = seedstageDays;
 }
