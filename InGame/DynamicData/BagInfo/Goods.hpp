@@ -16,10 +16,14 @@ class Goods{
 public:
     ~Goods();
     Goods(int goods_id, int amount);
+    
     void addAnother();
+    
+    void saveNewItem(int id, int amount);
     int getGoodsId();
+    
     int getGoodsAmount();
-    int getGoodsMaxStack();
+    
 private:
     int goods_id;
     int amount;

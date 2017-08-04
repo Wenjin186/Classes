@@ -18,6 +18,15 @@ Goods::Goods(int goods_id, int amount){
     this->amount = amount;
 }
 
+void Goods::saveNewItem(int id, int amount){
+    this->goods_id = id;
+    this->amount += amount;
+}
+
+void Goods::addAnother(){
+    amount++;
+}
+
 int Goods::getGoodsId(){
     return goods_id;
 }
@@ -25,7 +34,5 @@ int Goods::getGoodsId(){
 int Goods::getGoodsAmount(){
     return amount;
 }
-void Goods::addAnother(){
-    amount++;
-}
+
 

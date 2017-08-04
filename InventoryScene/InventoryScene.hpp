@@ -13,6 +13,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "cocostudio/WidgetCallBackHandlerProtocol.h"
+#include "GoodsBagSprite.hpp"
 
 USING_NS_CC;
 using namespace ui;
@@ -36,6 +37,12 @@ public:
     void Tool(Ref *sender);
     
     void Back(Ref *sender);
+    
+    void initGoodsBagLayer();
+    
+private:
+    Layer *goodsBag_layer = nullptr;
+    GoodsBagSprite *goodsBagSprite = nullptr;
 };
 
 #endif /* InventoryScene_hpp */

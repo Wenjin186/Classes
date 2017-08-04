@@ -24,8 +24,19 @@ bool InventoryScene::init(){
     return true;
 }
 
+void InventoryScene::initGoodsBagLayer(){
+    goodsBag_layer = (Layer *)getChildByName("GoodsBagLayer");
+    goodsBag_layer->setVisible(false);
+    
+    goodsBagSprite = GoodsBagSprite::create();
+    goodsBagSprite->setAnchorPoint(Vec2(0,0));
+    goodsBag_layer->addChild(goodsBagSprite);
+}
+
 void InventoryScene::onEnterTransitionDidFinish(){
     Scene::onEnterTransitionDidFinish();
+    
+    initGoodsBagLayer();
 }
 
 Widget::ccWidgetClickCallback InventoryScene::onLocateClickCallback(const std::string &callBackName){
@@ -48,7 +59,7 @@ void InventoryScene::Craft(cocos2d::Ref *sender){
 }
 
 void InventoryScene::Items(cocos2d::Ref *sender){
-    CCLOG("Items");
+    goodsBag_layer->setVisible(true);
 }
 
 void InventoryScene::Tool(cocos2d::Ref *sender){
