@@ -24,6 +24,9 @@ public:
     void setSeedId(int seedId);
     int getSeedId();
     
+    void setSeedName(string &seedName);
+    string &getSeedName();
+    
     void setSeedstageDays(int seedstageDays);
     int getSeedstageDays();
     
@@ -65,7 +68,11 @@ public:
     
 private:
     Seed *seed;
+    string seedName;
     string seedstagePicpath;
+    string stage1Picpath;
+    string stage2Picpath;
+    string stage3Picpath;
     
 };
 

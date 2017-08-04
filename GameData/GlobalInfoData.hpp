@@ -14,6 +14,7 @@
 #include "GoodsBag.hpp"
 #include "CppGoodsBagInfo.hpp"
 #include "CppAllGoodsInfo.hpp"
+#include "CppSpring.hpp"
 
 extern "C"{
 #include "MxzyDatabase.h"
@@ -28,6 +29,7 @@ public:
     //GoodsInfo *getGoodsInfoById(int id);
     CppGoodsBagInfo *getCppGoodsBagInfo();
     CppAllGoodsInfo *getCppAllGoodsInfo();
+    CppSpring *getCppSpring();
 private:
     string name;
     GlobalInfo *info;
@@ -35,6 +37,7 @@ private:
     vector<CppGbLevel *> gbVector;
     vector<GoodsInfo *> goodsInfoVector;
     CppAllGoodsInfo *allGoodsInfo = nullptr;
+    CppSpring *cppSpring = nullptr;
  //   vector<object>
 };
 

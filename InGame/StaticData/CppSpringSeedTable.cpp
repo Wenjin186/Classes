@@ -13,9 +13,19 @@ CppSpringSeedTable::CppSpringSeedTable(vector<CppSeed *> seedVector){
 }
 
 CppSpringSeedTable::~CppSpringSeedTable(){
-
+    //CC_SAFE_DELETE(si);
 }
 
 vector<CppSeed *> &CppSpringSeedTable::getSeedTable(){
     return seedVector;
+}
+
+CppSeed *CppSpringSeedTable::getSeedInfoById(int id){
+    for(int i = 0; i < SPRINGSEEDTABLE_MAX; i++){
+        auto si = seedVector.at(i);
+        if(si->getSeedId() == id){
+            return si;
+        }
+    }
+    return nullptr;
 }

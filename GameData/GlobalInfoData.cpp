@@ -22,6 +22,8 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
         goodsInfoVector.push_back(new GoodsInfo(&info->allgoods_info.detail[i]));
     }
     allGoodsInfo = new CppAllGoodsInfo(goodsInfoVector);
+    
+    cppSpring = new CppSpring(&info->spring);
 }
 
 GlobalInfoData::~GlobalInfoData(){
@@ -30,6 +32,11 @@ GlobalInfoData::~GlobalInfoData(){
         auto level = gbVector.at(i);
         CC_SAFE_DELETE(level);
     }
+    for(int i = 0; i < ALLGOODSINFO_MAX; i++){
+        auto gIfo = goodsInfoVector.at(i);
+        CC_SAFE_DELETE(gIfo);
+    }
+    
     CC_SAFE_DELETE(allGoodsInfo);
 }
 
@@ -41,4 +48,6 @@ CppAllGoodsInfo *GlobalInfoData::getCppAllGoodsInfo(){
     return allGoodsInfo;
 }
 
-
+CppSpring *GlobalInfoData::getCppSpring(){
+    return cppSpring;
+}
