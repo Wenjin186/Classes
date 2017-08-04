@@ -15,7 +15,7 @@ using namespace std;
 class Goods{
 public:
     ~Goods();
-    Goods(int goods_id, int amount, int max);
+    Goods(int goods_id, int amount);
     void addAnother();
     int getGoodsId();
     int getGoodsAmount();
@@ -23,7 +23,6 @@ public:
 private:
     int goods_id;
     int amount;
-    int max;
 };
 
 #endif /* Goods_hpp */

@@ -47,25 +47,6 @@ Widget::ccWidgetClickCallback NewGameScene::onLocateClickCallback(const std::str
 void NewGameScene::StartButton(Ref *sender){
     tf = (TextField *)getChildByName("EnterNameTextField");
     string char_str = tf->getString();
-    
-//    int ret = createCharacter(MxzyStorage::getInstance()->getCharacterTable());
-//    //CCLOG("ret=%d\n", ret);
-//    if (ret == ERROR) {
-//        //角色满了，无法创建，跳转错误界面
-//        CCLOG("角色满了，无法创建");
-//        return;
-//    }
-//    
-//    //MxzyStorage中的CharacterRow已经绑定id为ret，这里不需要释放crow指向的任何内存空间
-//    int rett = getCharacterRowById(&MxzyStorage::getInstance()->crow, MxzyStorage::getInstance()->getCharacterTable(), ret);
-//    
-//    if (rett==ERROR) {
-//        CCLOG("没有该角色ID的任何信息");
-//        return;
-//    }
-//    
-//    //设置角色的姓名
-//    setCharacterName(MxzyStorage::getInstance()->crow, char_str.c_str());
 
     auto storage = MxzyStorage::getInstance();
     int pro_id = storage->createNewProtagonist();

@@ -28,13 +28,12 @@ bool WholeFarmScene::init(){
     if (!Scene::init()) {
         return false;
     }
-//  测试GoodsInfo
-//    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppAllGoodsInfo()->getGoodsInfoById(301);
-//    CCLOG("%s", test->getGoodsName().c_str());
     
-// 测试GoodsBagInfo
-//    auto test = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(1);
-//    CCLOG("Goods bag level: %d", test->getLevel());
+//  测试数据库
+    auto testDb = MxzyStorage::getInstance();
+    auto pro_data = testDb->getProtagonistDataById(testDb->getCurrentProId());
+    
+    
     
     return true;
 }
@@ -49,12 +48,6 @@ void WholeFarmScene::onEnter(){
     
     button_layer = getChildByName<Layer *>("ButtonLayer");
     button_layer->setAnchorPoint(Vec2(0.5,0.5));
-    
-    //测试一下数据库
-//    ProtagonistData *data = MxzyStorage::getInstance()->getProtagonistDataById(1);
-//    GoodsBag *bag = data->getGoodsBag();
-//    CCLOG("bag level = %d", bag->getCurrentLevel());
-//    CCLOG("bag capacity = %d", bag->getGoodsBagCapacity());
 }
 
 void WholeFarmScene::onEnterTransitionDidFinish(){

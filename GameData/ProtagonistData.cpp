@@ -6,14 +6,24 @@
 //
 //
 
-#include "ProtagonistData.hpp"
+#include "MxzyStorage.hpp"
+
+//不需要考虑crow指向的是谁
 
 ProtagonistData::ProtagonistData(CharacterRow *crow){
     this->crow = crow;
+    initWithGoodsBag();
 }
 
 ProtagonistData::~ProtagonistData(){
     CC_SAFE_DELETE(bag);
+}
+
+void ProtagonistData::initWithGoodsBag(){
+    auto storage = MxzyStorage::getInstance();
+    int level = crow->bag.bag_level;
+    
+    bag = new GoodsBag(level, storage->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(level)->getCapacity());
 }
 
 void ProtagonistData::setId(int id){
@@ -34,19 +44,5 @@ string  &ProtagonistData::getName(){
 }
 
 GoodsBag *ProtagonistData::getGoodsBag(){
-    int level = crow->bag.bag_level;
-    int amount = 0;
-    
-//    MxzyStorage::getInstance()->getGlobalInfoData()->
-//    
-//    for (int i = 0; i < GOODSBAGINFO_MAX; i++) {
-//        if (level == info->goodsbag_info.levels[i].bag_level ){
-//            amount = info->goodsbag_info.levels[i].bag_capacity;
-//            break;
-//        }
-//    }
-//    
-    
-    bag = new GoodsBag(level, amount);
     return bag;
 }

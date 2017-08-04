@@ -19,13 +19,20 @@ class GoodsBag{
 public:
     GoodsBag(int current_level, int goodsbag_max);
     ~GoodsBag();
+    
+    void initWithGoodsVec();
+    
     void setCurrentLevel(int current_level);
+    
     int getCurrentLevel();
+    
     int getGoodsBagCapacity();
+    
+    
 private:
     int current_level;
     int capacity;
-    std::vector<Goods> *goods_vec;
+    std::vector<Goods *> goods_vec;
 };
 
 #endif /* GoodsBag_hpp */
