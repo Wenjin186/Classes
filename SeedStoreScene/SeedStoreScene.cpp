@@ -27,6 +27,15 @@ bool SeedStoreScene::init(){
     auto testDb = MxzyStorage::getInstance()->getGlobalInfoData()->getCppSpring()->getCppSpringSeedTable();
     CCLOG("seed id: %s", testDb->getSeedInfoById(101)->getSeedName().c_str());
     
+    int c1 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(1)->getCapacity();
+    
+    int c2 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(2)->getCapacity() ;
+    
+    int c3 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(3)->getCapacity() ;
+    
+    CCLOG("c1 = %d", c1);
+    CCLOG("c2 = %d", c2);
+    CCLOG("c3 = %d", c3);
     
     return true;
 }

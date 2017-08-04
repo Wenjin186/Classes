@@ -14,7 +14,7 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
     this->info = info;
     
     for (int i = 0; i < GOODSBAGINFO_MAX; i++) {
-        gbVector.push_back(new CppGbLevel(i, 0));
+        gbVector.push_back(new CppGbLevel( i + 1, info->goodsbag_info.levels[i].bag_capacity));
     }
     goodsBagInfo = new CppGoodsBagInfo(gbVector);
     
@@ -22,6 +22,7 @@ GlobalInfoData::GlobalInfoData(GlobalInfo *info){
         goodsInfoVector.push_back(new GoodsInfo(&info->allgoods_info.detail[i]));
     }
     allGoodsInfo = new CppAllGoodsInfo(goodsInfoVector);
+    
     
     cppSpring = new CppSpring(&info->spring);
 }
