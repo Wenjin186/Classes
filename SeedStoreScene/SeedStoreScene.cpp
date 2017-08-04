@@ -23,19 +23,23 @@ bool SeedStoreScene::init(){
         return false;
     }
     
-    //测试数据库
-    auto testDb = MxzyStorage::getInstance()->getGlobalInfoData()->getCppSpring()->getCppSpringSeedTable();
-    CCLOG("seed id: %s", testDb->getSeedInfoById(101)->getSeedName().c_str());
+    //测试数据库 spring seed 测试
+//    auto testDb = MxzyStorage::getInstance()->getGlobalInfoData()->getCppSpring()->getCppSpringSeedTable();
+//    CCLOG("seed id: %d", testDb->getSeedInfoById(101)->getSeedId());
     
-    int c1 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(1)->getCapacity();
-    
-    int c2 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(2)->getCapacity() ;
-    
-    int c3 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(3)->getCapacity() ;
-    
-    CCLOG("c1 = %d", c1);
-    CCLOG("c2 = %d", c2);
-    CCLOG("c3 = %d", c3);
+//    for(int i = 0; i < SPRINGSEEDTABLE_MAX; i++){
+//        CCLOG("seed id: %s", testDb->getSeedTable().at(i)->getSeedstagePicpath().c_str());
+//    }
+    //测试数据库 goodsBag 测试
+//    int c1 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(1)->getCapacity();
+//    
+//    int c2 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(2)->getCapacity() ;
+//    
+//    int c3 = MxzyStorage::getInstance()->getGlobalInfoData()->getCppGoodsBagInfo()->getLevelInfoByLevel(3)->getCapacity() ;
+//    
+//    CCLOG("c1 = %d", c1);
+//    CCLOG("c2 = %d", c2);
+//    CCLOG("c3 = %d", c3);
     
     return true;
 }
