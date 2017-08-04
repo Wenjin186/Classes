@@ -24,8 +24,8 @@ bool SeedStoreScene::init(){
     }
     
     //测试数据库 spring seed 测试
-//    auto testDb = MxzyStorage::getInstance()->getGlobalInfoData()->getCppSpring()->getCppSpringSeedTable();
-//    CCLOG("seed id: %d", testDb->getSeedInfoById(101)->getSeedId());
+    auto testDb = MxzyStorage::getInstance()->getGlobalInfoData()->getCppSpring()->getCppSpringSeedTable();
+    CCLOG("seed id: %s", testDb->getSeedInfoById(101)->getSeedName().c_str());
     
 //    for(int i = 0; i < SPRINGSEEDTABLE_MAX; i++){
 //        CCLOG("seed id: %s", testDb->getSeedTable().at(i)->getSeedstagePicpath().c_str());

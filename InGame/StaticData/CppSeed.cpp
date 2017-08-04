@@ -29,6 +29,7 @@ void CppSeed::setSeedName(string &seedName){
 }
 
 string &CppSeed::getSeedName(){
+    seedName = string(seed->seed_name);
     return seedName;
 }
 
